@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4ABFD9BB-B5EB-404C-9407-0F0D437EAECE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SeeSharpShip</RootNamespace>
+    <AssemblyName>SeeSharpShip</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Build.Tasks.v4.0" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Models\Usps\Domestic\FirstClassMailTypes.cs" />
+    <Compile Include="Extensions\ModelExtensions.cs" />
+    <Compile Include="Models\Usps\Domestic\Request\DomesticPackage.cs" />
+    <Compile Include="Extensions\GuidExtensions.cs" />
+    <Compile Include="Models\Usps\International\Request\MailType.cs" />
+    <Compile Include="Models\Usps\IRateResponse.cs" />
+    <Compile Include="Models\Usps\IRateRequest.cs" />
+    <Compile Include="Models\Usps\Domestic\Response\Package.cs" />
+    <Compile Include="Models\Usps\Domestic\Response\Postage.cs" />
+    <Compile Include="Models\Usps\International\Response\ExtraService.cs" />
+    <Compile Include="Models\Usps\International\Response\Package.cs" />
+    <Compile Include="Models\Usps\International\Response\PostOffice.cs" />
+    <Compile Include="Models\Usps\International\Response\Service.cs" />
+    <Compile Include="Models\Usps\RequestError.cs" />
+    <Compile Include="Models\Usps\Domestic\Response\SpecialService.cs" />
+    <Compile Include="Models\Usps\International\Request\ExtraServices.cs" />
+    <Compile Include="Models\Usps\International\Request\GlobalExpressGuaranteed.cs" />
+    <Compile Include="Models\Usps\International\Request\IntlRateV2Request.cs" />
+    <Compile Include="Models\Usps\International\Request\InternationalPackage.cs" />
+    <Compile Include="Models\Usps\International\Response\IntlV2Response.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\Usps\Domestic\ServiceTypes.cs" />
+    <Compile Include="Models\Usps\Domestic\Request\RateV4Request.cs" />
+    <Compile Include="Models\Usps\Domestic\Request\SpecialService.cs" />
+    <Compile Include="Utilities\CacheItem.cs" />
+    <Compile Include="Services\Usps\IRateService.cs" />
+    <Compile Include="Services\Usps\RateService.cs" />
+    <Compile Include="Models\Usps\Domestic\Response\RateV4Response.cs" />
+    <Compile Include="Utilities\ResponseCache.cs" />
+    <Compile Include="Services\Usps\ServiceInfo.cs" />
+    <Compile Include="Utilities\EnumHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="license.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Docs\Rate-Calculators-v1-3.pdf" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
