@@ -39,29 +39,36 @@ namespace SeeSharpShip.Models.Usps.International.Request {
         /// <summary>
         ///   Value must be numeric. Package weight in ounces is computed by (16 * Pounds) + Ounces. Package weight cannot exceed 70 pounds
         /// </summary>
+        [XmlElement(Order = 1)]
         public int Pounds { get; set; }
 
+        [XmlElement(Order = 4)]
         public string MailType {
             get { return SelectedMailType.ToDescription(); }
-// ReSharper disable ValueParameterNotUsed
             set {
-                /* Required for XML Serialization */
+                var selectedMailType = value.ToEnumSafe<MailType>();
+                if (selectedMailType.HasValue) {
+                    SelectedMailType = selectedMailType.Value;
+                }
             }
-// ReSharper restore ValueParameterNotUsed
         }
 
         [XmlIgnore]
         public MailType SelectedMailType { get; set; }
 
-        [XmlElement("GXG")]
+        [XmlElement("GXG", Order = 5)]
         public GlobalExpressGuaranteed Gxg { get; set; }
 
+        [XmlElement(Order = 6)]
         public string ValueOfContents { get; set; }
 
+        [XmlElement(Order = 7)]
         public string Country { get; set; }
 
+        [XmlElement(Order = 14)]
         public string OriginZip { get; set; }
 
+        [XmlElement(Order = 15)]
         public string CommercialFlag { get; set; }
 
         /// <summary>
@@ -69,6 +76,7 @@ namespace SeeSharpShip.Models.Usps.International.Request {
         ///   Groups the SpecialServices elements.  
         ///   Special Services prices and availability will not be returned when Service = "ALL" or "ONLINE"
         /// </summary>
+        [XmlElement(Order = 16)]
         public ExtraServices ExtraServices { get; set; }
 
         #region Container - Same as domestic
@@ -77,6 +85,7 @@ namespace SeeSharpShip.Models.Usps.International.Request {
         ///   Use to specify special containers or container attributes that may affect postage; otherwise, leave blank.
         ///   RECTANGULAR or NONRECTANGULAR must be indicated when Size=LARGE
         /// </summary>
+        [XmlElement(Order = 8)]
         public string Container {
             get { return Size.Equals("REGULAR") ? string.Empty : _container; }
             set {
@@ -102,6 +111,7 @@ namespace SeeSharpShip.Models.Usps.International.Request {
         ///   REGULAR: Package dimensions are 12" or less;
         ///   LARGE: Any package dimension is larger than 12".
         /// </summary>
+        [XmlElement(Order = 9)]
         public string Size {
             get {
                 if (Width <= 12 && Length <= 12 && Height <= 12) {
@@ -124,6 +134,7 @@ namespace SeeSharpShip.Models.Usps.International.Request {
         /// <summary>
         ///   Value must be numeric. Units are inches. Required when Size is LARGE.
         /// </summary>
+        [XmlElement(Order = 10)]
         public decimal Width { get; set; }
 
         #endregion
@@ -133,6 +144,7 @@ namespace SeeSharpShip.Models.Usps.International.Request {
         /// <summary>
         ///   Value must be numeric. Units are inches. Required when Size is LARGE
         /// </summary>
+        [XmlElement(Order = 11)]
         public decimal Length { get; set; }
 
         #endregion
@@ -142,6 +154,7 @@ namespace SeeSharpShip.Models.Usps.International.Request {
         /// <summary>
         ///   Value must be numeric. Units are inches. Required when Size is LARGE.
         /// </summary>
+        [XmlElement(Order = 12)]
         public decimal Height { get; set; }
 
         #endregion
@@ -151,8 +164,9 @@ namespace SeeSharpShip.Models.Usps.International.Request {
         /// <summary>
         ///   Value must be numeric. Units are inches. Required when Size is LARGE, and Container is NONRECTANGULAR or VARIABLE/NULL.
         /// </summary>
+        [XmlElement(Order = 13)]
         public decimal Girth {
-            get { return (Height*2) + (Width*2); }
+            get { return 2 * (Height + Width); }
             // ReSharper disable ValueParameterNotUsed
             set {
                 /* Required for XML Serialization */
@@ -167,6 +181,7 @@ namespace SeeSharpShip.Models.Usps.International.Request {
         /// <summary>
         ///   Value must be numeric. Package weight in ounces is computed by (16 * Pounds) + Ounces. Package weight cannot exceed 70 pounds (1120 ounces).
         /// </summary>
+        [XmlElement(Order = 2)]
         public decimal Ounces { get; set; }
 
         #endregion
@@ -180,6 +195,7 @@ namespace SeeSharpShip.Models.Usps.International.Request {
         ///   Service='ALL'
         ///   Service='ONLINE'
         /// </summary>
+        [XmlElement(Order = 3)]
         public bool Machinable { get; set; }
 
         #endregion

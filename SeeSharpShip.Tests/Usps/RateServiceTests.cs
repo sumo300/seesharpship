@@ -42,24 +42,31 @@ namespace SeeSharpShip.Tests.Usps {
     public class RateServiceTests {
         private IRateService _rateService;
 
-        private static readonly string UserId = Settings.Default.UspsUserId;
-        private static readonly string Password = Settings.Default.UspsPassword;
-        private static readonly string SourceZipCode = Settings.Default.UspsSourceZip;
+        private static string _userId;
+        private static string _password;
+        private static string _sourceZipCode;
 
         [TestFixtureSetUp]
         public void SetUp() {
             //Default hits production API URL
-            //_rateService = new RateService();
+            _rateService = new RateService();
 
+            // TODO: Figure out why app.config is not working for this configuration.  Properties are empty.
             //Uses test API URL by default.  Configure in app.config.
-            _rateService = new RateService(Settings.Default.UspsApiUrl);
+            //_rateService = new RateService(Settings.Default.UspsApiUrl);
+            //_userId = Settings.Default.UspsUserId;
+            _userId = "";
+            //_password = Settings.Default.UspsPassword;
+            _password = "";
+            //_sourceZipCode = Settings.Default.UspsSourceZip;
+            _sourceZipCode = "";
         }
 
         [Test]
         [Category("Domestic")]
         [Explicit("Integration test that hits the real API")]
         public void DomesticServices_ValidCredentials_ReturnsDistinctServices() {
-            List<ServiceInfo> response = _rateService.DomesticServices(UserId, Password, SourceZipCode).ToList();
+            List<ServiceInfo> response = _rateService.DomesticServices(_userId, _password, _sourceZipCode).ToList();
             Assert.That(response.Count(), Is.EqualTo(response.Distinct().Count()));
         }
 
@@ -67,7 +74,7 @@ namespace SeeSharpShip.Tests.Usps {
         [Category("Domestic")]
         [Explicit("Integration test that hits the real API")]
         public void DomesticServices_ValidCredentials_ReturnsListOfServices() {
-            List<ServiceInfo> response = _rateService.DomesticServices(UserId, Password, SourceZipCode).ToList();
+            List<ServiceInfo> response = _rateService.DomesticServices(_userId, _password, _sourceZipCode).ToList();
             Assert.That(response.Count, Is.GreaterThan(0));
         }
 
@@ -77,8 +84,8 @@ namespace SeeSharpShip.Tests.Usps {
         public void Get_DomesticOverweightFirstClass_ReturnsPackageError() {
             string request =
                 string.Format(
-                    "<RateV4Request PASSWORD=\"{0}\" USERID=\"{1}\"><Revision>2</Revision><Package ID=\"539720aa4cff99f7\"><Service>First Class</Service><FirstClassMailType>Letter</FirstClassMailType><ZipOrigination>18507</ZipOrigination><ZipDestination>18518</ZipDestination><Pounds>10</Pounds><Ounces>0</Ounces><Container>RECTANGULAR</Container><Size>LARGE</Size><Width>15</Width><Length>15</Length><Height>20</Height><Girth>70</Girth><Value>249.95</Value><Machinable>false</Machinable><ReturnLocations>false</ReturnLocations><ShipDate>24-Nov-2011</ShipDate></Package></RateV4Request>",
-                    UserId, Password);
+                    "<RateV4Request PASSWORD=\"{1}\" USERID=\"{0}\"><Revision>2</Revision><Package ID=\"539720aa4cff99f7\"><Service>First Class</Service><FirstClassMailType>Letter</FirstClassMailType><ZipOrigination>18507</ZipOrigination><ZipDestination>18518</ZipDestination><Pounds>10</Pounds><Ounces>0</Ounces><Container>RECTANGULAR</Container><Size>LARGE</Size><Width>15</Width><Length>15</Length><Height>20</Height><Girth>70</Girth><Value>249.95</Value><Machinable>false</Machinable><ReturnLocations>false</ReturnLocations></Package></RateV4Request>",
+                    _userId, _password);
             RateV4Response response = _rateService.Get(request.ToObject<RateV4Request>());
             Assert.That(response.Packages[0].Error, Is.Not.Null);
         }
@@ -89,8 +96,8 @@ namespace SeeSharpShip.Tests.Usps {
         public void Get_InternationalValueOfContentsOver1000_IntlRateV2Response() {
             string request =
                 string.Format(
-                    "<IntlRateV2Request PASSWORD=\"{0}\" USERID=\"{1}\"><Revision>2</Revision><Package ID=\"2fcd64731e0ff32b\"><Pounds>30</Pounds><Ounces>0</Ounces><Machinable>false</Machinable><MailType>Package</MailType><ValueOfContents>1550.00</ValueOfContents><Country>Canada</Country><Container /><Size>REGULAR</Size><Width>1</Width><Length>1</Length><Height>1</Height><Girth>4</Girth><OriginZip>18507</OriginZip><ExtraServices><ExtraService>1</ExtraService></ExtraServices></Package></IntlRateV2Request>",
-                    UserId, Password);
+                    "<IntlRateV2Request PASSWORD=\"{1}\" USERID=\"{0}\"><Revision>2</Revision><Package ID=\"2fcd64731e0ff32b\"><Pounds>30</Pounds><Ounces>0</Ounces><Machinable>false</Machinable><MailType>Package</MailType><ValueOfContents>1550.00</ValueOfContents><Country>Canada</Country><Container /><Size>REGULAR</Size><Width>1</Width><Length>1</Length><Height>1</Height><Girth>4</Girth><OriginZip>18507</OriginZip><ExtraServices><ExtraService>1</ExtraService></ExtraServices></Package></IntlRateV2Request>",
+                    _userId, _password);
             IntlRateV2Response response = _rateService.Get(request.ToObject<IntlRateV2Request>());
             Assert.That(response, Is.InstanceOf(typeof (IntlRateV2Response)));
         }
@@ -132,7 +139,7 @@ namespace SeeSharpShip.Tests.Usps {
         [Category("International")]
         [Explicit("Integration test that hits the real API")]
         public void InternationalServices_ValidCredentials_ReturnsDistinctServices() {
-            IList<ServiceInfo> response = _rateService.InternationalServices(UserId, Password, SourceZipCode).ToList();
+            IList<ServiceInfo> response = _rateService.InternationalServices(_userId, _password, _sourceZipCode).ToList();
             Assert.That(response.Count, Is.EqualTo(response.Distinct().Count()));
         }
 
@@ -140,8 +147,18 @@ namespace SeeSharpShip.Tests.Usps {
         [Category("International")]
         [Explicit("Integration test that hits the real API")]
         public void InternationalServices_ValidCredentials_ReturnsListOfServices() {
-            List<ServiceInfo> response = _rateService.InternationalServices(UserId, Password, SourceZipCode).ToList();
+            List<ServiceInfo> response = _rateService.InternationalServices(_userId, _password, _sourceZipCode).ToList();
             Assert.That(response.Count, Is.GreaterThan(0));
+        }
+
+        [Test]
+        [Category("Domestic")]
+        [Explicit("Integration test that hits the real API")]
+        public void Get_DomesticWithZipCodeLongerThanFiveDigits_RateV4ResponseWithNoErrors() {
+            string request = string.Format("<RateV4Request PASSWORD=\"{1}\" USERID=\"{0}\"><Revision>2</Revision><Package ID=\"2022599e4dfb4687\"><Service>Priority</Service><ZipOrigination>18507</ZipOrigination><ZipDestination>27513-8629</ZipDestination><Pounds>2</Pounds><Ounces>0</Ounces><Container /><Size>REGULAR</Size><Width>1</Width><Length>1</Length><Height>1</Height><Girth>4</Girth><Value>42.95</Value><SpecialServices><SpecialService>1</SpecialService></SpecialServices><Machinable>false</Machinable><ReturnLocations>false</ReturnLocations></Package></RateV4Request>", _userId, _password);
+            RateV4Response response = _rateService.Get(request.ToObject<RateV4Request>());
+            Assert.That(response.Error, Is.Null);
+            Assert.That(response.Packages[0].Error, Is.Null);
         }
     }
 }

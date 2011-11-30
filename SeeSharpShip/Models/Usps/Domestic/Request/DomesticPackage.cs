@@ -41,11 +41,12 @@ namespace SeeSharpShip.Models.Usps.Domestic.Request {
         /// </summary>
         public string Service {
             get { return SelectedServiceType.ToDescription(); }
-// ReSharper disable ValueParameterNotUsed
             set {
-                /* Required for XML Serialization */
+                var selectedServiceType = value.ToEnumSafe<ServiceTypes>();
+                if (selectedServiceType.HasValue) {
+                    SelectedServiceType = selectedServiceType.Value;
+                }
             }
-// ReSharper restore ValueParameterNotUsed
         }
 
         [XmlIgnore]
@@ -80,10 +81,15 @@ namespace SeeSharpShip.Models.Usps.Domestic.Request {
         /// </summary>
         public string ZipOrigination { get; set; }
 
+        private string _zipDestination;
+
         /// <summary>
         ///   ZIP code must be valid.
         /// </summary>
-        public string ZipDestination { get; set; }
+        public string ZipDestination {
+            get { return _zipDestination; }
+            set { _zipDestination = value.Substring(0, 5); }
+        }
 
         /// <summary>
         ///   Value must be numeric. Package weight in ounces is computed by (16 * Pounds) + Ounces. Package weight cannot exceed 70 pounds
@@ -221,10 +227,20 @@ namespace SeeSharpShip.Models.Usps.Domestic.Request {
         /// </summary>
         public bool ReturnLocations { get; set; }
 
+        private string _shipDate;
+
         /// <summary>
         ///   Date Package Will Be Mailed. Ship date may be today plus 0 to 3 days in advance. Enter the date in format: dd-mmm-yyyy, such as 14-Feb-2011.
         /// </summary>
-        public string ShipDate { get; set; }
+        public string ShipDate {
+            get {
+                if (string.IsNullOrEmpty(_shipDate)) {
+                    _shipDate = string.Format("{0:dd-MMM-yyyy}", DateTime.Now.Date);
+                }
+                return _shipDate;
+            }
+            set { _shipDate = value; }
+        }
 
         [XmlIgnore]
         private decimal Weight {
