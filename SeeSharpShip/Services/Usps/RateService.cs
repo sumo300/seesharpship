@@ -158,9 +158,8 @@ namespace SeeSharpShip.Services.Usps {
                     return string.Empty;
                 }
 
-                using (var reader = new StreamReader(stream)) {
-                    responseXml = reader.ReadToEnd();
-                }
+                var reader = new StreamReader(stream);
+                responseXml = reader.ReadToEnd();
             }
 
             responseXml = RemoveCommasFromDecimalValues(responseXml);
