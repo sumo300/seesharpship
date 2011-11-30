@@ -49,17 +49,14 @@ namespace SeeSharpShip.Tests.Usps {
         [TestFixtureSetUp]
         public void SetUp() {
             //Default hits production API URL
-            _rateService = new RateService();
+            //_rateService = new RateService();
 
-            // TODO: Figure out why app.config is not working for this configuration.  Properties are empty.
             //Uses test API URL by default.  Configure in app.config.
-            //_rateService = new RateService(Settings.Default.UspsApiUrl);
-            //_userId = Settings.Default.UspsUserId;
-            _userId = "";
-            //_password = Settings.Default.UspsPassword;
-            _password = "";
-            //_sourceZipCode = Settings.Default.UspsSourceZip;
-            _sourceZipCode = "";
+            _rateService = new RateService(Settings.Default.UspsApiUrl);
+         
+            _userId = Settings.Default.UspsUserId;
+            _password = Settings.Default.UspsPassword;
+            _sourceZipCode = Settings.Default.UspsSourceZip;
         }
 
         [Test]
