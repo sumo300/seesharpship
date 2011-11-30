@@ -29,17 +29,16 @@ namespace SeeSharpShip.Extensions {
             var settings = new XmlWriterSettings {Indent = false, NewLineHandling = NewLineHandling.None};
 
             using (var stream = new MemoryStream()) {
-                using (XmlWriter writer = XmlWriter.Create(stream, settings)) {
-                    var namespaces = new XmlSerializerNamespaces();
-                    namespaces.Add("", "");
-                    serializer.Serialize(writer, value, namespaces);
+                XmlWriter writer = XmlWriter.Create(stream, settings);
+                var namespaces = new XmlSerializerNamespaces();
+                namespaces.Add("", "");
+                serializer.Serialize(writer, value, namespaces);
 
-                    stream.Position = 0;
-                    var reader = new StreamReader(stream);
-                    string output = reader.ReadToEnd();
-                    var regEx = new Regex(@"<\?xml.*?\?>");
-                    return regEx.Replace(output, string.Empty).Trim();
-                }
+                stream.Position = 0;
+                var reader = new StreamReader(stream);
+                string output = reader.ReadToEnd();
+                var regEx = new Regex(@"<\?xml.*?\?>");
+                return regEx.Replace(output, string.Empty).Trim();
             }
         }
 
