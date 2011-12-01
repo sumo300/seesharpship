@@ -175,5 +175,70 @@ namespace SeeSharpShip.Tests.Usps {
                                                 };
             return request;
         }
+
+        public static RateV4Request GetDomesticRequestWithZipDestinationLessThan5CharactersLong() {
+            var request = new RateV4Request {
+                                                UserId = Settings.Default.UspsUserId,
+                                                Password = Settings.Default.UspsPassword,
+                                                Packages = new List<DomesticPackage> {
+                                                                                         new DomesticPackage {
+                                                                                                                 Container = "RECTANGULAR",
+                                                                                                                 Height = 10,
+                                                                                                                 Length = 10,
+                                                                                                                 Ounces = 6,
+                                                                                                                 Pounds = 5,
+                                                                                                                 ReturnLocations = false,
+                                                                                                                 ShipDate =
+                                                                                                                     String.Format(
+                                                                                                                         "{0:dd-MMM-yyyy}",
+                                                                                                                         DateTime.Now.Date),
+                                                                                                                 Value = "600.00",
+                                                                                                                 Width = 10,
+                                                                                                                 ZipDestination = "9",
+                                                                                                                 ZipOrigination = "18507",
+                                                                                                                 SelectedServiceType =
+                                                                                                                     ServiceTypes.Express,
+                                                                                                                 SpecialServices =
+                                                                                                                     new SpecialServices
+                                                                                                                     {SpecialService = new[] {"11"}},
+                                                                                                             },
+                                                                                     }
+                                            };
+            return request;
+        }
+
+        public static RateV4Request GetDomesticRequestWithZipDestinationNull()
+        {
+            var request = new RateV4Request
+            {
+                UserId = Settings.Default.UspsUserId,
+                Password = Settings.Default.UspsPassword,
+                Packages = new List<DomesticPackage> {
+                                                                                         new DomesticPackage {
+                                                                                                                 Container = "RECTANGULAR",
+                                                                                                                 Height = 10,
+                                                                                                                 Length = 10,
+                                                                                                                 Ounces = 6,
+                                                                                                                 Pounds = 5,
+                                                                                                                 ReturnLocations = false,
+                                                                                                                 ShipDate =
+                                                                                                                     String.Format(
+                                                                                                                         "{0:dd-MMM-yyyy}",
+                                                                                                                         DateTime.Now.Date),
+                                                                                                                 Value = "600.00",
+                                                                                                                 Width = 10,
+                                                                                                                 ZipDestination = null,
+                                                                                                                 ZipOrigination = "18507",
+                                                                                                                 SelectedServiceType =
+                                                                                                                     ServiceTypes.Express,
+                                                                                                                 SpecialServices =
+                                                                                                                     new SpecialServices
+                                                                                                                     {SpecialService = new[] {"11"}},
+                                                                                                             },
+                                                                                     }
+            };
+            return request;
+        }
+
     }
 }

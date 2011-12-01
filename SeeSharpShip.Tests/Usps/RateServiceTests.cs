@@ -17,6 +17,7 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
@@ -53,10 +54,22 @@ namespace SeeSharpShip.Tests.Usps {
 
             //Uses test API URL by default.  Configure in app.config.
             _rateService = new RateService(Settings.Default.UspsApiUrl);
-         
+
             _userId = Settings.Default.UspsUserId;
             _password = Settings.Default.UspsPassword;
             _sourceZipCode = Settings.Default.UspsSourceZip;
+
+            if (string.IsNullOrEmpty(_userId)) {
+                throw new Exception("You must set UspsUserId in app.config to run 'Explicit' integration tests");
+            }
+
+            if (string.IsNullOrEmpty(_password)) {
+                throw new Exception("You must set UspsPassword in app.config to run 'Explicit' integration tests");
+            }
+
+            if (string.IsNullOrEmpty(_sourceZipCode)) {
+                throw new Exception("You must set UspsSourceZip in app.config to run 'Explicit' integration tests");
+            }
         }
 
         [Test]
@@ -86,6 +99,32 @@ namespace SeeSharpShip.Tests.Usps {
             RateV4Response response = _rateService.Get(request.ToObject<RateV4Request>());
             Assert.That(response.Packages[0].Error, Is.Not.Null);
         }
+
+        [Test]
+        [Category("Domestic")]
+        [Explicit("Integration test that hits the real API")]
+        public void Get_DomesticWithZipCodeLessThanFiveCharacters_RateV4ResponseWithError() {
+            RateV4Response response = _rateService.Get(RateServiceTestsData.GetDomesticRequestWithZipDestinationLessThan5CharactersLong());
+            Assert.That(response.Error, Is.Not.Null);
+        }
+
+        [Test]
+        [Category("Domestic")]
+        [Explicit("Integration test that hits the real API")]
+        public void Get_DomesticWithZipCodeLongerThanFiveDigits_RateV4ResponseWithNoErrors() {
+            string request =
+                string.Format(
+                    "<RateV4Request PASSWORD=\"{1}\" USERID=\"{0}\"><Revision>2</Revision><Package ID=\"2022599e4dfb4687\"><Service>Priority</Service><ZipOrigination>18507</ZipOrigination><ZipDestination>27513-8629</ZipDestination><Pounds>2</Pounds><Ounces>0</Ounces><Container /><Size>REGULAR</Size><Width>1</Width><Length>1</Length><Height>1</Height><Girth>4</Girth><Value>42.95</Value><SpecialServices><SpecialService>1</SpecialService></SpecialServices><Machinable>false</Machinable><ReturnLocations>false</ReturnLocations></Package></RateV4Request>",
+                    _userId, _password);
+            RateV4Response response = _rateService.Get(request.ToObject<RateV4Request>());
+            Assert.That(response.Error, Is.Null);
+            Assert.That(response.Packages[0].Error, Is.Null);
+        }
+
+        [Test]
+        [Category("Domestic")]
+        [Explicit("Integration test that hits the real API")]
+        public void Get_DomesticWithZipCodeNull_ThrowsNullReferenceException() { Assert.Throws(typeof (NullReferenceException), () => _rateService.Get(RateServiceTestsData.GetDomesticRequestWithZipDestinationNull())); }
 
         [Test]
         [Category("International")]
@@ -146,16 +185,6 @@ namespace SeeSharpShip.Tests.Usps {
         public void InternationalServices_ValidCredentials_ReturnsListOfServices() {
             List<ServiceInfo> response = _rateService.InternationalServices(_userId, _password, _sourceZipCode).ToList();
             Assert.That(response.Count, Is.GreaterThan(0));
-        }
-
-        [Test]
-        [Category("Domestic")]
-        [Explicit("Integration test that hits the real API")]
-        public void Get_DomesticWithZipCodeLongerThanFiveDigits_RateV4ResponseWithNoErrors() {
-            string request = string.Format("<RateV4Request PASSWORD=\"{1}\" USERID=\"{0}\"><Revision>2</Revision><Package ID=\"2022599e4dfb4687\"><Service>Priority</Service><ZipOrigination>18507</ZipOrigination><ZipDestination>27513-8629</ZipDestination><Pounds>2</Pounds><Ounces>0</Ounces><Container /><Size>REGULAR</Size><Width>1</Width><Length>1</Length><Height>1</Height><Girth>4</Girth><Value>42.95</Value><SpecialServices><SpecialService>1</SpecialService></SpecialServices><Machinable>false</Machinable><ReturnLocations>false</ReturnLocations></Package></RateV4Request>", _userId, _password);
-            RateV4Response response = _rateService.Get(request.ToObject<RateV4Request>());
-            Assert.That(response.Error, Is.Null);
-            Assert.That(response.Packages[0].Error, Is.Null);
         }
     }
 }

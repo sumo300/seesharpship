@@ -88,7 +88,7 @@ namespace SeeSharpShip.Models.Usps.Domestic.Request {
         /// </summary>
         public string ZipDestination {
             get { return _zipDestination; }
-            set { _zipDestination = value.Substring(0, 5); }
+            set { _zipDestination = value.Substring(0, Math.Min(value.Length, 5)); }
         }
 
         /// <summary>
