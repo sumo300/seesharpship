@@ -19,12 +19,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
 using System.Web;
-using System.Xml.Linq;
 using SeeSharpShip.Extensions;
 using SeeSharpShip.Models.Usps;
 using SeeSharpShip.Models.Usps.Domestic;
@@ -32,22 +28,24 @@ using SeeSharpShip.Models.Usps.Domestic.Request;
 using SeeSharpShip.Models.Usps.Domestic.Response;
 using SeeSharpShip.Models.Usps.International.Request;
 using SeeSharpShip.Models.Usps.International.Response;
-using SeeSharpShip.Utilities;
 
 namespace SeeSharpShip.Services.Usps {
     public class RateService : IRateService {
         private readonly string _apiUrl;
+        private readonly IRateRequest _rateRequest;
 
 // ReSharper disable UnusedMember.Global
-        public RateService() : this("http://production.shippingapis.com/ShippingAPI.dll") { }
+        [Obsolete("Remove this constructor once an IoC container is implemented.  Consider what to do about API url as well.")]
+        public RateService() : this("http://production.shippingapis.com/ShippingAPI.dll", new RateRequest()) { }
 // ReSharper restore UnusedMember.Global
 
-        public RateService(string apiUrl) {
+        public RateService(string apiUrl, IRateRequest rateRequest) {
             if (string.IsNullOrWhiteSpace(apiUrl)) {
                 throw new ArgumentNullException("apiUrl");
             }
 
             _apiUrl = apiUrl;
+            _rateRequest = rateRequest;
         }
 
         #region IRateService Members
@@ -130,61 +128,8 @@ namespace SeeSharpShip.Services.Usps {
 
         private static bool HasError(string response) { return response.IndexOf("<Error>", StringComparison.InvariantCultureIgnoreCase) != -1; }
 
-        private string DoRequest(IntlRateV2Request request) { return DoWebRequest(string.Format("API=IntlRateV2&XML={0}", request.ToXmlString())); }
+        private string DoRequest(IntlRateV2Request request) { return _rateRequest.GetResponse(_apiUrl, string.Format("API=IntlRateV2&XML={0}", request.ToXmlString())); }
 
-        private string DoRequest(RateV4Request request) { return DoWebRequest(string.Format("API=RateV4&XML={0}", request.ToXmlString())); }
-
-        private string DoWebRequest(string fullRequest) {
-            string requestHash = fullRequest.ToSha1Hash();
-
-            if (ResponseCache.ContainsKey(requestHash)) {
-                return ResponseCache.Get(requestHash);
-            }
-
-            byte[] bytes = new ASCIIEncoding().GetBytes(fullRequest);
-            var webRequest = (HttpWebRequest) WebRequest.Create(_apiUrl);
-
-            webRequest.Method = "POST";
-            webRequest.ContentType = "application/x-www-form-urlencoded";
-            webRequest.ContentLength = bytes.Length;
-            Stream requestStream = webRequest.GetRequestStream();
-            requestStream.Write(bytes, 0, bytes.Length);
-            requestStream.Close();
-            WebResponse response = webRequest.GetResponse();
-
-            string responseXml;
-            using (Stream stream = response.GetResponseStream()) {
-                if (stream == null) {
-                    return string.Empty;
-                }
-
-                var reader = new StreamReader(stream);
-                responseXml = reader.ReadToEnd();
-            }
-
-            responseXml = RemoveCommasFromDecimalValues(responseXml);
-
-            ResponseCache.Add(requestHash, responseXml, 30);
-
-            return responseXml;
-        }
-
-        /// <summary>
-        /// Removes commas invalidly returned in USPS's rate response for values that should pass validation for xs:decimal type.
-        /// See: http://www.w3.org/TR/xmlschema-2/#decimal
-        /// </summary>
-        private static string RemoveCommasFromDecimalValues(string responseXml) {
-            var responseDoc = XElement.Parse(responseXml);
-
-            foreach (var item in responseDoc.Descendants("Value").Where(v => v.Value.Contains(","))) {
-                item.Value = item.Value.Replace(",", string.Empty);
-            }
-
-            foreach (var item in responseDoc.Descendants("ValueOfContents").Where(v => v.Value.Contains(","))) {
-                item.Value = item.Value.Replace(",", string.Empty);
-            }
-
-            return responseDoc.ToString();
-        }
+        private string DoRequest(RateV4Request request) { return _rateRequest.GetResponse(_apiUrl, string.Format("API=RateV4&XML={0}", request.ToXmlString())); }
     }
 }

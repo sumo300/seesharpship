@@ -71,6 +71,8 @@
     <Compile Include="Models\Usps\Domestic\ServiceTypes.cs" />
     <Compile Include="Models\Usps\Domestic\Request\RateV4Request.cs" />
     <Compile Include="Models\Usps\Domestic\Request\SpecialService.cs" />
+    <Compile Include="Services\Usps\IRateRequest.cs" />
+    <Compile Include="Services\Usps\RateRequest.cs" />
     <Compile Include="Utilities\CacheItem.cs" />
     <Compile Include="Services\Usps\IRateService.cs" />
     <Compile Include="Services\Usps\RateService.cs" />

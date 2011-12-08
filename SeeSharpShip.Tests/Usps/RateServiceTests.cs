@@ -53,7 +53,7 @@ namespace SeeSharpShip.Tests.Usps {
             //_rateService = new RateService();
 
             //Uses test API URL by default.  Configure in app.config.
-            _rateService = new RateService(Settings.Default.UspsApiUrl);
+            _rateService = new RateService(Settings.Default.UspsApiUrl, new RateRequest());
 
             _userId = Settings.Default.UspsUserId;
             _password = Settings.Default.UspsPassword;
@@ -103,9 +103,9 @@ namespace SeeSharpShip.Tests.Usps {
         [Test]
         [Category("Domestic")]
         [Explicit("Integration test that hits the real API")]
-        public void Get_DomesticWithZipCodeLessThanFiveCharacters_RateV4ResponseWithError() {
+        public void Get_DomesticWithZipCodeLessThanFiveCharacters_ReturnsPackageError() {
             RateV4Response response = _rateService.Get(RateServiceTestsData.GetDomesticRequestWithZipDestinationLessThan5CharactersLong());
-            Assert.That(response.Error, Is.Not.Null);
+            Assert.That(response.Packages[0].Error, Is.Not.Null);
         }
 
         [Test]
