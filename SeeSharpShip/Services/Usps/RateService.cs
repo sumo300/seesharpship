@@ -169,6 +169,10 @@ namespace SeeSharpShip.Services.Usps {
             return responseXml;
         }
 
+        /// <summary>
+        /// Removes commas invalidly returned in USPS's rate response for values that should pass validation for xs:decimal type.
+        /// See: http://www.w3.org/TR/xmlschema-2/#decimal
+        /// </summary>
         private static string RemoveCommasFromDecimalValues(string responseXml) {
             var responseDoc = XElement.Parse(responseXml);
 
