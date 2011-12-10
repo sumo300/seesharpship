@@ -37,6 +37,8 @@
     <Reference Include="Microsoft.Build.Tasks.v4.0" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -71,6 +73,21 @@
     <Compile Include="Models\Usps\Domestic\ServiceTypes.cs" />
     <Compile Include="Models\Usps\Domestic\Request\RateV4Request.cs" />
     <Compile Include="Models\Usps\Domestic\Request\SpecialService.cs" />
+    <Compile Include="Service References\FedExRateService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\UpsFreightRateService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\UpsPackageRateService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Services\Usps\IRateRequest.cs" />
     <Compile Include="Services\Usps\RateRequest.cs" />
     <Compile Include="Utilities\CacheItem.cs" />
@@ -82,10 +99,76 @@
     <Compile Include="Utilities\EnumHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="license.txt" />
+    <None Include="Service References\FedExRateService\RateServiceDefinitions.wsdl" />
+    <None Include="Service References\FedExRateService\SeeSharpShip.FedExRateService.RateReply.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UpsFreightRateService\common.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UpsFreightRateService\Error1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UpsFreightRateService\FreightRate.wsdl" />
+    <None Include="Service References\UpsFreightRateService\FreightRateWebServiceSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UpsFreightRateService\SeeSharpShip.UpsFreightRateService.FreightRateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UpsFreightRateService\UPSSecurity.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UpsPackageRateService\common.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UpsPackageRateService\Error1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UpsPackageRateService\RateWebServiceSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UpsPackageRateService\RateWS.wsdl" />
+    <None Include="Service References\UpsPackageRateService\SeeSharpShip.UpsPackageRateService.RateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UpsPackageRateService\UPSSecurity.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Docs\Rate-Calculators-v1-3.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Docs\FedEx-Test-Credentials.txt" />
+    <None Include="Service References\UpsFreightRateService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\UpsFreightRateService\configuration.svcinfo" />
+    <None Include="Service References\UpsFreightRateService\configuration91.svcinfo" />
+    <None Include="Service References\UpsPackageRateService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\UpsPackageRateService\configuration.svcinfo" />
+    <None Include="Service References\UpsPackageRateService\configuration91.svcinfo" />
+    <None Include="Service References\FedExRateService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\FedExRateService\configuration.svcinfo" />
+    <None Include="Service References\FedExRateService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\FedExRateService\" />
+    <WCFMetadataStorage Include="Service References\UpsFreightRateService\" />
+    <WCFMetadataStorage Include="Service References\UpsPackageRateService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
