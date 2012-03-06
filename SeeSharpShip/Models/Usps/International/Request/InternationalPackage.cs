@@ -1,4 +1,4 @@
-#region SeeSharpShip is Copyright (C) 2011-2011 Michael J. Sumerano.
+#region SeeSharpShip is Copyright (C) 2011-2012 Michael J. Sumerano.
 
 // This file is part of SeeSharpShip.
 // 
@@ -72,18 +72,13 @@ namespace SeeSharpShip.Models.Usps.International.Request {
         public string CommercialFlag { get; set; }
 
         /// <summary>
-        ///   Available when Revision='2'.
-        ///   Groups the SpecialServices elements.  
-        ///   Special Services prices and availability will not be returned when Service = "ALL" or "ONLINE"
+        ///   Available when Revision='2'. Groups the SpecialServices elements. Special Services prices and availability will not be returned when Service = "ALL" or "ONLINE"
         /// </summary>
         [XmlElement(Order = 16)]
         public ExtraServices ExtraServices { get; set; }
 
-        #region Container - Same as domestic
-
         /// <summary>
-        ///   Use to specify special containers or container attributes that may affect postage; otherwise, leave blank.
-        ///   RECTANGULAR or NONRECTANGULAR must be indicated when Size=LARGE
+        ///   Use to specify special containers or container attributes that may affect postage; otherwise, leave blank. RECTANGULAR or NONRECTANGULAR must be indicated when Size=LARGE
         /// </summary>
         [XmlElement(Order = 8)]
         public string Container {
@@ -102,14 +97,8 @@ namespace SeeSharpShip.Models.Usps.International.Request {
             }
         }
 
-        #endregion
-
-        #region Size - Same as domestic
-
         /// <summary>
-        ///   Defined as follows:
-        ///   REGULAR: Package dimensions are 12" or less;
-        ///   LARGE: Any package dimension is larger than 12".
+        ///   Defined as follows: REGULAR: Package dimensions are 12" or less; LARGE: Any package dimension is larger than 12".
         /// </summary>
         [XmlElement(Order = 9)]
         public string Size {
@@ -127,19 +116,11 @@ namespace SeeSharpShip.Models.Usps.International.Request {
             // ReSharper restore ValueParameterNotUsed
         }
 
-        #endregion
-
-        #region Width - same as domestic
-
         /// <summary>
         ///   Value must be numeric. Units are inches. Required when Size is LARGE.
         /// </summary>
         [XmlElement(Order = 10)]
         public decimal Width { get; set; }
-
-        #endregion
-
-        #region Length - same as domestic
 
         /// <summary>
         ///   Value must be numeric. Units are inches. Required when Size is LARGE
@@ -147,26 +128,18 @@ namespace SeeSharpShip.Models.Usps.International.Request {
         [XmlElement(Order = 11)]
         public decimal Length { get; set; }
 
-        #endregion
-
-        #region Height - same as domestic
-
         /// <summary>
         ///   Value must be numeric. Units are inches. Required when Size is LARGE.
         /// </summary>
         [XmlElement(Order = 12)]
         public decimal Height { get; set; }
 
-        #endregion
-
-        #region Girth - same as domestic
-
         /// <summary>
         ///   Value must be numeric. Units are inches. Required when Size is LARGE, and Container is NONRECTANGULAR or VARIABLE/NULL.
         /// </summary>
         [XmlElement(Order = 13)]
         public decimal Girth {
-            get { return 2 * (Height + Width); }
+            get { return 2*(Height + Width); }
             // ReSharper disable ValueParameterNotUsed
             set {
                 /* Required for XML Serialization */
@@ -174,30 +147,16 @@ namespace SeeSharpShip.Models.Usps.International.Request {
             // ReSharper restore ValueParameterNotUsed
         }
 
-        #endregion
-
-        #region Ounces - Same as domestic
-
         /// <summary>
         ///   Value must be numeric. Package weight in ounces is computed by (16 * Pounds) + Ounces. Package weight cannot exceed 70 pounds (1120 ounces).
         /// </summary>
         [XmlElement(Order = 2)]
         public decimal Ounces { get; set; }
 
-        #endregion
-
-        #region Machinable - Same as domestic
-
         /// <summary>
-        ///   Machinable is required when:
-        ///   Service='FIRST CLASS' and (FirstClassMailType='LETTER' or FirstClassMailType='FLAT') 
-        ///   Service='PARCEL POST' 
-        ///   Service='ALL'
-        ///   Service='ONLINE'
+        ///   Machinable is required when: Service='FIRST CLASS' and (FirstClassMailType='LETTER' or FirstClassMailType='FLAT') Service='PARCEL POST' Service='ALL' Service='ONLINE'
         /// </summary>
         [XmlElement(Order = 3)]
         public bool Machinable { get; set; }
-
-        #endregion
     }
 }
