@@ -4,3 +4,4 @@ obj/
 *.suo
 *.user
 FedEx-Test-Credentials.txt
+SeeSharpShip.Tests/sumerano.config
