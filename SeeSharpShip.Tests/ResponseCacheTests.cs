@@ -22,14 +22,6 @@ using NUnit.Framework;
 using SeeSharpShip.Utilities;
 
 namespace SeeSharpShip.Tests {
-    /* [MethodName_StateUnderTest_ExpectedBehavior]
-
-    Examples:
-    Public void Sum_NegativeNumberAs1stParam_ExceptionThrown()
-    Public void Sum_NegativeNumberAs2ndParam_ExceptionThrown ()
-    Public void Sum_simpleValues_Calculated ()
-*/
-
     [TestFixture]
     public class ResponseCacheTests {
         [Test]

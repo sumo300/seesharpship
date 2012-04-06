@@ -1,4 +1,4 @@
-﻿#region SeeSharpShip.Tests is Copyright (C) 2011-2011 Michael J. Sumerano.
+﻿#region SeeSharpShip.Tests is Copyright (C) 2011-2012 Michael J. Sumerano.
 
 // This file is part of SeeSharpShip.Tests.
 // 
@@ -18,75 +18,45 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 using NUnit.Framework;
 using SeeSharpShip.Extensions;
 using SeeSharpShip.Models.Usps.Domestic;
-using SeeSharpShip.Models.Usps.Domestic.Request;
+using SeeSharpShip.Tests.Usps.DomesticBuilders;
 
 namespace SeeSharpShip.Tests {
-    /* [MethodName_StateUnderTest_ExpectedBehavior]
-
-        Examples:
-        Public void Sum_NegativeNumberAs1stParam_ExceptionThrown()
-        Public void Sum_NegativeNumberAs2ndParam_ExceptionThrown ()
-        Public void Sum_simpleValues_Calculated ()
-    */
-
     [TestFixture]
     public class ModelExtensionsTests {
         [Test]
         public void ToXmlString_RateV4Request_ValidXmlString() {
-            var request = new RateV4Request {
-                                                UserId = "test",
-                                                Password = "test",
-                                                Packages = new List<DomesticPackage> {
-                                                                                         new DomesticPackage {
-                                                                                                                 Container = "RECTANGULAR",
-                                                                                                                 Height = 10,
-                                                                                                                 Length = 10,
-                                                                                                                 //Machinable = true,
-                                                                                                                 Ounces = 6,
-                                                                                                                 Pounds = 5,
-                                                                                                                 ReturnLocations = false,
-                                                                                                                 ShipDate =
-                                                                                                                     string.Format(
-                                                                                                                         "{0:dd-MMM-yyyy}",
-                                                                                                                         DateTime.Now.Date),
-                                                                                                                 Value = "300.00",
-                                                                                                                 Width = 10,
-                                                                                                                 ZipDestination = "90210",
-                                                                                                                 ZipOrigination = "18507",
-                                                                                                                 SelectedServiceType =
-                                                                                                                     ServiceTypes.Express
-                                                                                                             },
-                                                                                         new DomesticPackage {
-                                                                                                                 Container = "RECTANGULAR",
-                                                                                                                 Height = 10,
-                                                                                                                 Length = 10,
-                                                                                                                 //Machinable = true,
-                                                                                                                 Ounces = 6,
-                                                                                                                 Pounds = 5,
-                                                                                                                 ReturnLocations = false,
-                                                                                                                 ShipDate =
-                                                                                                                     string.Format(
-                                                                                                                         "{0:dd-MMM-yyyy}",
-                                                                                                                         DateTime.Now.Date),
-                                                                                                                 Value = "300.00",
-                                                                                                                 Width = 10,
-                                                                                                                 ZipDestination = "90210",
-                                                                                                                 ZipOrigination = "18507",
-                                                                                                                 SelectedServiceType =
-                                                                                                                     ServiceTypes.Priority,
-                                                                                                                 SpecialServices =
-                                                                                                                     new SpecialServices
-                                                                                                                     {SpecialService = new[] {"1"}},
-                                                                                                             },
-                                                                                     }
-                                            };
+            Domestic.Request requestBuilder = new Domestic.Request().WithCredentials("test", "test");
+            Domestic.Package package1 = new Domestic.Package()
+                .WithRectangularContainer()
+                .WithHeight(10)
+                .WithLength(10)
+                .WithOunces(6)
+                .WithPounds(5)
+                .WithShipDate(DateTime.Now.Date)
+                .WithValue(300)
+                .WithWidth(10)
+                .WithZipDestination("90210")
+                .WithZipOrigination("18507")
+                .WithServiceType(ServiceTypes.Express);
 
+            Domestic.Package package2 = new Domestic.Package()
+                .WithRectangularContainer()
+                .WithHeight(10)
+                .WithLength(10)
+                .WithOunces(6)
+                .WithPounds(5)
+                .WithShipDate(DateTime.Now.Date)
+                .WithValue(300)
+                .WithWidth(10)
+                .WithZipDestination("90210")
+                .WithZipOrigination("18507")
+                .WithServiceType(ServiceTypes.Priority)
+                .WithInsurance();
 
-            string output = request.ToXmlString();
+            string output = requestBuilder.WithPackage(package1).WithPackage(package2).Build().ToXmlString();
             Assert.That(output.Length, Is.GreaterThan(0));
         }
     }

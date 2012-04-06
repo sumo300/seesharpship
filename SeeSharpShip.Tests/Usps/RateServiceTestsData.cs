@@ -1,4 +1,4 @@
-#region SeeSharpShip.Tests is Copyright (C) 2011-2011 Michael J. Sumerano.
+#region SeeSharpShip.Tests is Copyright (C) 2011-2012 Michael J. Sumerano.
 
 // This file is part of SeeSharpShip.Tests.
 // 
@@ -207,13 +207,11 @@ namespace SeeSharpShip.Tests.Usps {
             return request;
         }
 
-        public static RateV4Request GetDomesticRequestWithZipDestinationNull()
-        {
-            var request = new RateV4Request
-            {
-                UserId = Settings.Default.UspsUserId,
-                Password = Settings.Default.UspsPassword,
-                Packages = new List<DomesticPackage> {
+        public static RateV4Request GetDomesticRequestWithZipDestinationNull() {
+            var request = new RateV4Request {
+                                                UserId = Settings.Default.UspsUserId,
+                                                Password = Settings.Default.UspsPassword,
+                                                Packages = new List<DomesticPackage> {
                                                                                          new DomesticPackage {
                                                                                                                  Container = "RECTANGULAR",
                                                                                                                  Height = 10,
@@ -236,9 +234,8 @@ namespace SeeSharpShip.Tests.Usps {
                                                                                                                      {SpecialService = new[] {"11"}},
                                                                                                              },
                                                                                      }
-            };
+                                            };
             return request;
         }
-
     }
 }
