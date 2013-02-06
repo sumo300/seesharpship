@@ -97,7 +97,8 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Docs\Rate-Calculators-v1-5.pdf" />
+    <None Include="Docs\FedEx-RateServices_WSDL_Guide.pdf" />
+    <None Include="Docs\USPS-Rate-Calculators-v1-5.pdf" />
     <None Include="license.txt" />
     <None Include="Service References\FedExRateService\RateServiceDefinitions.wsdl" />
     <None Include="Service References\FedExRateService\SeeSharpShip.FedExRateService.RateReply.datasource">
