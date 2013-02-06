@@ -3,16 +3,16 @@
   <Profiles />
   <Settings>
     <Setting Name="UspsUserId" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">[REPLACE WITH USPS USERID]</Value>
     </Setting>
     <Setting Name="UspsPassword" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">[REPLACE WITH USPS PASSWORD]</Value>
     </Setting>
     <Setting Name="UspsSourceZip" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">[REPLACE WITH SOURCE ZIP CODE]</Value>
     </Setting>
     <Setting Name="UspsApiUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">https://secure.shippingapis.com/ShippingAPITest.dll</Value>
+      <Value Profile="(Default)">http://production.shippingapis.com/ShippingAPI.dll</Value>
     </Setting>
   </Settings>
 </SettingsFile>

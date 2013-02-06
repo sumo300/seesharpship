@@ -27,8 +27,9 @@ using SeeSharpShip.Extensions;
 using SeeSharpShip.Utilities;
 
 namespace SeeSharpShip.Services.Usps {
-    public class RateRequest : IRateRequest {
-        #region IRateRequest Members
+    public class PostRequest : IRequest
+    {
+        #region IRequest Members
 
         public string GetResponse(string requestUrl, string requestContents) {
             string requestHash = requestContents.ToSha1Hash();

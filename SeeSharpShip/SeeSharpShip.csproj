@@ -57,6 +57,9 @@
     <Compile Include="Models\Usps\International\Response\Package.cs" />
     <Compile Include="Models\Usps\International\Response\PostOffice.cs" />
     <Compile Include="Models\Usps\International\Response\Service.cs" />
+    <Compile Include="Models\Usps\ITrackInfo.cs" />
+    <Compile Include="Models\Usps\ITrackRequest.cs" />
+    <Compile Include="Models\Usps\ITrackResponse.cs" />
     <Compile Include="Models\Usps\RequestError.cs" />
     <Compile Include="Models\Usps\Domestic\Response\SpecialService.cs" />
     <Compile Include="Models\Usps\International\Request\ExtraServices.cs" />
@@ -64,6 +67,10 @@
     <Compile Include="Models\Usps\International\Request\IntlRateV2Request.cs" />
     <Compile Include="Models\Usps\International\Request\InternationalPackage.cs" />
     <Compile Include="Models\Usps\International\Response\IntlV2Response.cs" />
+    <Compile Include="Models\Usps\TrackId.cs" />
+    <Compile Include="Models\Usps\TrackInfo.cs" />
+    <Compile Include="Models\Usps\TrackRequest.cs" />
+    <Compile Include="Models\Usps\TrackResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Usps\Domestic\ServiceTypes.cs" />
     <Compile Include="Models\Usps\Domestic\Request\RateV4Request.cs" />
@@ -83,8 +90,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Services\Usps\IRateRequest.cs" />
-    <Compile Include="Services\Usps\RateRequest.cs" />
+    <Compile Include="Services\Usps\IRequest.cs" />
+    <Compile Include="Services\Usps\ITrackService.cs" />
+    <Compile Include="Services\Usps\PostRequest.cs" />
+    <Compile Include="Services\Usps\TrackService.cs" />
     <Compile Include="Utilities\CacheItem.cs" />
     <Compile Include="Services\Usps\IRateService.cs" />
     <Compile Include="Services\Usps\RateService.cs" />

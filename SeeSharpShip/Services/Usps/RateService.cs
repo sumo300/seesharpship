@@ -32,20 +32,20 @@ using SeeSharpShip.Models.Usps.International.Response;
 namespace SeeSharpShip.Services.Usps {
     public class RateService : IRateService {
         private readonly string _apiUrl;
-        private readonly IRateRequest _rateRequest;
+        private readonly IRequest _request;
 
 // ReSharper disable UnusedMember.Global
         [Obsolete("Remove this constructor once an IoC container is implemented.  Consider what to do about API url as well.")]
-        public RateService() : this("http://production.shippingapis.com/ShippingAPI.dll", new RateRequest()) { }
+        public RateService() : this("http://production.shippingapis.com/ShippingAPI.dll", new PostRequest()) { }
 // ReSharper restore UnusedMember.Global
 
-        public RateService(string apiUrl, IRateRequest rateRequest) {
+        public RateService(string apiUrl, IRequest request) {
             if (string.IsNullOrWhiteSpace(apiUrl)) {
                 throw new ArgumentNullException("apiUrl");
             }
 
             _apiUrl = apiUrl;
-            _rateRequest = rateRequest;
+            _request = request;
         }
 
         #region IRateService Members
@@ -128,8 +128,8 @@ namespace SeeSharpShip.Services.Usps {
 
         private static bool HasError(string response) { return response.IndexOf("<Error>", StringComparison.InvariantCultureIgnoreCase) != -1; }
 
-        private string DoRequest(IntlRateV2Request request) { return _rateRequest.GetResponse(_apiUrl, string.Format("API=IntlRateV2&XML={0}", request.ToXmlString())); }
+        private string DoRequest(IntlRateV2Request request) { return _request.GetResponse(_apiUrl, string.Format("API=IntlRateV2&XML={0}", request.ToXmlString())); }
 
-        private string DoRequest(RateV4Request request) { return _rateRequest.GetResponse(_apiUrl, string.Format("API=RateV4&XML={0}", request.ToXmlString())); }
+        private string DoRequest(RateV4Request request) { return _request.GetResponse(_apiUrl, string.Format("API=RateV4&XML={0}", request.ToXmlString())); }
     }
 }

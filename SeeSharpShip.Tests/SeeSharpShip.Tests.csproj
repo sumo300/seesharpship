@@ -49,6 +49,7 @@
     <Compile Include="ResponseCacheTests.cs" />
     <Compile Include="Usps\RateServiceTests.cs" />
     <Compile Include="Usps\DomesticBuilders\DomesticRequest.cs" />
+    <Compile Include="Usps\TrackServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

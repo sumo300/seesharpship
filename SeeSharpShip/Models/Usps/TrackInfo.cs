@@ -1,4 +1,4 @@
-#region SeeSharpShip is Copyright (C) 2011-2011 Michael J. Sumerano.
+#region SeeSharpShip is Copyright (C) 2013-2013 Michael J. Sumerano.
 
 // This file is part of SeeSharpShip.
 // 
@@ -17,8 +17,22 @@
 
 #endregion
 
-namespace SeeSharpShip.Services.Usps {
-    public interface IRateRequest {
-        string GetResponse(string requestUrl, string requestContents);
+using System.Collections.Generic;
+
+namespace SeeSharpShip.Models.Usps {
+    public class TrackInfo : ITrackInfo {
+        public string GuaranteedDeliveryDate { get; set; }
+
+        public string TrackSummary { get; set; }
+
+        public List<string> TrackDetail { get; set; }
+
+        #region ITrackInfo Members
+
+        public string Id { get; set; }
+
+        public RequestError Error { get; set; }
+
+        #endregion
     }
 }

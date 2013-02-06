@@ -45,7 +45,7 @@ namespace SeeSharpShip.Tests.Usps {
             //_rateService = new RateService();
 
             //Uses test API URL by default.  Configure in app.config.
-            _rateService = new RateService(Settings.Default.UspsApiUrl, new RateRequest());
+            _rateService = new RateService(Settings.Default.UspsApiUrl, new PostRequest());
 
             _userId = Settings.Default.UspsUserId;
             _password = Settings.Default.UspsPassword;
