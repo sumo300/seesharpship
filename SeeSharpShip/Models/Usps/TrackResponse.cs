@@ -17,16 +17,19 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace SeeSharpShip.Models.Usps {
-    public class TrackResponse : ITrackResponse {
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    [XmlRoot(Namespace = "", IsNullable = false)]
+    public class TrackResponse {
+        [XmlElement(IsNullable = true)]
         public RequestError Error { get; set; }
 
-        #region ITrackResponse Members
-
-        public List<ITrackInfo> TrackInfo { get; set; }
-
-        #endregion
+        [XmlElement(IsNullable = true)]
+        public List<TrackInfo> TrackInfo { get; set; }
     }
 }

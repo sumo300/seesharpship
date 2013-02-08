@@ -17,9 +17,11 @@
 
 #endregion
 
+using System;
 using System.Xml.Serialization;
 
 namespace SeeSharpShip.Models.Usps {
+    [Serializable]
     public class TrackId {
         [XmlAttribute(AttributeName = "ID")]
         public string Id { get; set; }

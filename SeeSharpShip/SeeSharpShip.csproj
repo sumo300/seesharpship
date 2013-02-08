@@ -57,9 +57,6 @@
     <Compile Include="Models\Usps\International\Response\Package.cs" />
     <Compile Include="Models\Usps\International\Response\PostOffice.cs" />
     <Compile Include="Models\Usps\International\Response\Service.cs" />
-    <Compile Include="Models\Usps\ITrackInfo.cs" />
-    <Compile Include="Models\Usps\ITrackRequest.cs" />
-    <Compile Include="Models\Usps\ITrackResponse.cs" />
     <Compile Include="Models\Usps\RequestError.cs" />
     <Compile Include="Models\Usps\Domestic\Response\SpecialService.cs" />
     <Compile Include="Models\Usps\International\Request\ExtraServices.cs" />
@@ -67,6 +64,7 @@
     <Compile Include="Models\Usps\International\Request\IntlRateV2Request.cs" />
     <Compile Include="Models\Usps\International\Request\InternationalPackage.cs" />
     <Compile Include="Models\Usps\International\Response\IntlV2Response.cs" />
+    <Compile Include="Models\Usps\TrackDetail.cs" />
     <Compile Include="Models\Usps\TrackId.cs" />
     <Compile Include="Models\Usps\TrackInfo.cs" />
     <Compile Include="Models\Usps\TrackRequest.cs" />

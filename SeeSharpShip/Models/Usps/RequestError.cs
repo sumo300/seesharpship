@@ -17,9 +17,11 @@
 
 #endregion
 
+using System;
 using System.Xml.Serialization;
 
 namespace SeeSharpShip.Models.Usps {
+    [Serializable]
     [XmlRoot("Error")]
     public class RequestError {
         public string Number { get; set; }

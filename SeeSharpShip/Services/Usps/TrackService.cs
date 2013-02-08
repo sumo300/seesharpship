@@ -18,8 +18,6 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Xml.Linq;
 using SeeSharpShip.Extensions;
 using SeeSharpShip.Models.Usps;
@@ -48,25 +46,8 @@ namespace SeeSharpShip.Services.Usps {
         {
             string response = DoRequest(request);
             var responseXml = XElement.Parse(response);
-            var trackInfo = responseXml.Descendants("TrackInfo").ToList();
 
-            if (trackInfo.Any()) {
-                var trackInfoErrors = trackInfo.Elements("Error").ToList();
-
-                if (trackInfoErrors.Any()) {
-                    var trackResponse = new TrackResponse {TrackInfo = new List<ITrackInfo>()};
-
-                    foreach (var error in trackInfoErrors) {
-                        trackResponse.TrackInfo.Add(new TrackInfo {Error = error.ToString().ToObject<RequestError>()});
-                    }
-
-                    return trackResponse;
-                }
-            }
-
-            return responseXml.Name == "Error"
-                       ? new TrackResponse {Error = responseXml.ToString().ToObject<RequestError>()}
-                       : response.ToObject<TrackResponse>();
+            return responseXml.Name == "Error" ? new TrackResponse {Error = response.ToObject<RequestError>()} : response.ToObject<TrackResponse>();
         }
 
         #endregion

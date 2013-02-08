@@ -17,18 +17,16 @@
 
 #endregion
 
+using System;
 using System.Xml.Serialization;
 
 namespace SeeSharpShip.Models.Usps {
-    public class TrackRequest : ITrackRequest {
-        #region ITrackRequest Members
-
+    [Serializable]
+    public class TrackRequest {
         [XmlAttribute(AttributeName = "USERID")]
         public string UserId { get; set; }
 
         [XmlElement(ElementName = "TrackID")]
         public TrackId TrackId { get; set; }
-
-        #endregion
     }
 }

@@ -17,17 +17,13 @@
 
 #endregion
 
+using System;
 using System.Xml.Serialization;
 
 namespace SeeSharpShip.Models.Usps {
-    public interface ITrackRequest {
-        /// <summary>
-        ///     This attribute specifies your Web Tools ID. See the Developer's Guide for information on obtaining your USERID.
-        /// </summary>
-        [XmlAttribute(AttributeName = "USERID")]
-        string UserId { get; set; }
-
-        [XmlElement(ElementName = "TrackID")]
-        TrackId TrackId { get; set; }
+    [Serializable]
+    public class TrackDetail {
+        [XmlText]
+        public string Value { get; set; }
     }
 }
