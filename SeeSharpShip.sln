@@ -10,6 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E1FBD977-D
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{956B54A0-7BB5-440F-AFC5-8E2893284038}"
+	ProjectSection(SolutionItems) = preProject
+		NuGet\pack.bat = NuGet\pack.bat
+		NuGet\packWithSymbols.bat = NuGet\packWithSymbols.bat
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Transforms", "Transforms", "{5A3B87E3-4E3A-4B12-A02D-DA49E59F73A4}"
 	ProjectSection(SolutionItems) = preProject

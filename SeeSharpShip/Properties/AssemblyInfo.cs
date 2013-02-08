@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SeeSharpShip")]
 [assembly: AssemblyDescription("A shipping library written in C# that wraps popular U.S. shipping APIs like USPS, UPS, FedEx and DHL.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Sumerano.com")]
+[assembly: AssemblyCompany("Michael J. Sumerano")]
 [assembly: AssemblyProduct("SeeSharpShip")]
 [assembly: AssemblyCopyright("Copyright © Michael J. Sumerano")]
 [assembly: AssemblyTrademark("")]
@@ -35,5 +35,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.1.5.0")]
-[assembly: AssemblyFileVersion("0.1.5.0")]
+[assembly: AssemblyVersion("0.1.6.0")]
+[assembly: AssemblyFileVersion("0.1.6.0")]
