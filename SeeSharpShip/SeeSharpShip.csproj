@@ -36,8 +36,11 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -73,10 +76,10 @@
     <Compile Include="Models\Usps\Domestic\ServiceTypes.cs" />
     <Compile Include="Models\Usps\Domestic\Request\RateV4Request.cs" />
     <Compile Include="Models\Usps\Domestic\Request\SpecialService.cs" />
-    <Compile Include="Service References\FedExRateService\Reference.cs">
+    <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Service References\UpsFreightRateService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -99,6 +102,11 @@
     <Compile Include="Utilities\ResponseCache.cs" />
     <Compile Include="Services\Usps\ServiceInfo.cs" />
     <Compile Include="Utilities\EnumHelper.cs" />
+    <Compile Include="Web References\FedExRateService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -145,6 +153,14 @@
     <None Include="Service References\UpsPackageRateService\UPSSecurity.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Web References\FedExRateService\RateReply1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\FedExRateService\RateServiceDefinitions.wsdl" />
+    <None Include="Web References\FedExRateService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -162,17 +178,29 @@
     </None>
     <None Include="Service References\UpsPackageRateService\configuration.svcinfo" />
     <None Include="Service References\UpsPackageRateService\configuration91.svcinfo" />
-    <None Include="Service References\FedExRateService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Service References\FedExRateService\configuration.svcinfo" />
-    <None Include="Service References\FedExRateService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\FedExRateService\" />
     <WCFMetadataStorage Include="Service References\UpsFreightRateService\" />
     <WCFMetadataStorage Include="Service References\UpsPackageRateService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\FedEx\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="C:\Open Source Projects\FedExSamples\cs\RateWebServiceClient\Express\International\Web References\RateServiceWebReference\RateServiceDefinitions.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\FedExRateService\</RelPath>
+      <UpdateFromURL>C:\Open Source Projects\FedExSamples\cs\RateWebServiceClient\Express\International\Web References\RateServiceWebReference\RateServiceDefinitions.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>SeeSharpShip_FedExService_RateService</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
