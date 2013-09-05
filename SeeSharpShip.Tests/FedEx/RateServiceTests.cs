@@ -10,7 +10,7 @@ namespace SeeSharpShip.Tests.FedEx
         public void Get_EmptyRequest_ThrowsException() { 
             var service = new Services.FedEx.RateService();
             RateRequest request = new RateRequest();
-            Assert.Throws(typeof (Exception), () => service.Get(request));
+            Assert.Throws(typeof(NotImplementedException), () => service.Get(request));
         }
     }
 }
