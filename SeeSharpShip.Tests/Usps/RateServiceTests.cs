@@ -1,4 +1,4 @@
-#region SeeSharpShip.Tests is Copyright (C) 2011-2011 Michael J. Sumerano.
+#region SeeSharpShip.Tests is Copyright (C) 2011-2013 Michael J. Sumerano.
 
 // This file is part of SeeSharpShip.Tests.
 // 
@@ -80,6 +80,18 @@ namespace SeeSharpShip.Tests.Usps {
             Assert.That(response.Count, Is.GreaterThan(0));
         }
 
+        /// <summary>
+        ///     Tests fix for defect #7 introduced by USPS API changes
+        /// </summary>
+        [Test]
+        [Category("Domestic")]
+        [Explicit("Integration test that hits the real API")]
+        public void DomesticServices_ValidCredentials_ReturnsListOfServicesContainingEncodedTrademark() {
+            List<ServiceInfo> response = _rateService.DomesticServices(_userId, _password, _sourceZipCode).ToList();
+            bool containsEncodedTrademark = response.Any(r => r.FullName.Contains("<sup>™</sup>"));
+            Assert.That(containsEncodedTrademark, Is.Not.True);
+        }
+
         [Test]
         [Category("Domestic")]
         [Explicit("Integration test that hits the real API")]
@@ -116,7 +128,9 @@ namespace SeeSharpShip.Tests.Usps {
         [Test]
         [Category("Domestic")]
         [Explicit("Integration test that hits the real API")]
-        public void Get_DomesticWithZipCodeNull_ThrowsNullReferenceException() { Assert.Throws(typeof (NullReferenceException), () => _rateService.Get(RateServiceTestsData.GetDomesticRequestWithZipDestinationNull())); }
+        public void Get_DomesticWithZipCodeNull_ThrowsNullReferenceException() {
+            Assert.Throws(typeof (NullReferenceException), () => _rateService.Get(RateServiceTestsData.GetDomesticRequestWithZipDestinationNull()));
+        }
 
         [Test]
         [Category("International")]
@@ -177,6 +191,18 @@ namespace SeeSharpShip.Tests.Usps {
         public void InternationalServices_ValidCredentials_ReturnsListOfServices() {
             List<ServiceInfo> response = _rateService.InternationalServices(_userId, _password, _sourceZipCode).ToList();
             Assert.That(response.Count, Is.GreaterThan(0));
+        }
+
+        /// <summary>
+        ///     Tests fix for defect #7 introduced by USPS API changes
+        /// </summary>
+        [Test]
+        [Category("International")]
+        [Explicit("Integration test that hits the real API")]
+        public void InternationalServices_ValidCredentials_ReturnsListOfServicesContainingEncodedTrademark() {
+            List<ServiceInfo> response = _rateService.InternationalServices(_userId, _password, _sourceZipCode).ToList();
+            bool containsEncodedTrademark = response.Any(r => r.FullName.Contains("<sup>™</sup>"));
+            Assert.That(containsEncodedTrademark, Is.Not.True);
         }
     }
 }

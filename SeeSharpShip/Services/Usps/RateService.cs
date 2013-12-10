@@ -1,4 +1,4 @@
-﻿#region SeeSharpShip is Copyright (C) 2011-2011 Michael J. Sumerano.
+﻿#region SeeSharpShip is Copyright (C) 2011-2013 Michael J. Sumerano.
 
 // This file is part of SeeSharpShip.
 // 
@@ -20,7 +20,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using SeeSharpShip.Extensions;
 using SeeSharpShip.Models.Usps;
 using SeeSharpShip.Models.Usps.Domestic;
@@ -34,10 +33,11 @@ namespace SeeSharpShip.Services.Usps {
         private readonly string _apiUrl;
         private readonly IRequest _request;
 
-// ReSharper disable UnusedMember.Global
+        // ReSharper disable UnusedMember.Global
         [Obsolete("Remove this constructor once an IoC container is implemented.  Consider what to do about API url as well.")]
-        public RateService() : this("http://production.shippingapis.com/ShippingAPI.dll", new PostRequest()) { }
-// ReSharper restore UnusedMember.Global
+        public RateService() : this("http://production.shippingapis.com/ShippingAPI.dll", new PostRequest()) {}
+
+        // ReSharper restore UnusedMember.Global
 
         public RateService(string apiUrl, IRequest request) {
             if (string.IsNullOrWhiteSpace(apiUrl)) {
@@ -68,18 +68,18 @@ namespace SeeSharpShip.Services.Usps {
 
         public IEnumerable<ServiceInfo> DomesticServices(string userId, string password, string zip) {
             var request = new RateV4Request {
-                                                UserId = userId,
-                                                Password = password,
-                                                Packages = new List<DomesticPackage> {
-                                                                                         new DomesticPackage {
-                                                                                                                 Id = "1",
-                                                                                                                 SelectedServiceType = ServiceTypes.All,
-                                                                                                                 Pounds = 1,
-                                                                                                                 ZipOrigination = zip,
-                                                                                                                 ZipDestination = zip,
-                                                                                                             }
-                                                                                     }
-                                            };
+                UserId = userId,
+                Password = password,
+                Packages = new List<DomesticPackage> {
+                    new DomesticPackage {
+                        Id = "1",
+                        SelectedServiceType = ServiceTypes.All,
+                        Pounds = 1,
+                        ZipOrigination = zip,
+                        ZipDestination = zip,
+                    }
+                }
+            };
 
             string response = DoRequest(request);
 
@@ -89,28 +89,26 @@ namespace SeeSharpShip.Services.Usps {
 
             var rateResponse = response.ToObject<RateV4Response>();
             return (rateResponse.Packages.SelectMany(package => package.Postages, (package, postage) => new ServiceInfo {
-                                                                                                                            Id = postage.ClassId,
-                                                                                                                            FullName =
-                                                                                                                                HttpUtility.HtmlDecode(
-                                                                                                                                    postage.MailService),
-                                                                                                                        })).Distinct();
+                Id = postage.ClassId,
+                FullName = postage.MailService,
+            })).Distinct();
         }
 
         public IEnumerable<ServiceInfo> InternationalServices(string userId, string password, string zip) {
             var request = new IntlRateV2Request {
-                                                    UserId = userId,
-                                                    Password = password,
-                                                    Packages = new List<InternationalPackage> {
-                                                                                                  new InternationalPackage {
-                                                                                                                               Id = "1",
-                                                                                                                               SelectedMailType = MailType.All,
-                                                                                                                               Pounds = 1,
-                                                                                                                               OriginZip = zip,
-                                                                                                                               Country = "CANADA",
-                                                                                                                               ValueOfContents = "1.00",
-                                                                                                                           }
-                                                                                              }
-                                                };
+                UserId = userId,
+                Password = password,
+                Packages = new List<InternationalPackage> {
+                    new InternationalPackage {
+                        Id = "1",
+                        SelectedMailType = MailType.All,
+                        Pounds = 1,
+                        OriginZip = zip,
+                        Country = "CANADA",
+                        ValueOfContents = "1.00",
+                    }
+                }
+            };
 
             string response = DoRequest(request);
 
@@ -121,15 +119,21 @@ namespace SeeSharpShip.Services.Usps {
             var rateResponse = response.ToObject<IntlRateV2Response>();
             return (from package in rateResponse.Packages
                     from service in package.Services
-                    select new ServiceInfo {Id = service.Id, FullName = HttpUtility.HtmlDecode(service.SvcDescription)}).Distinct();
+                    select new ServiceInfo {Id = service.Id, FullName = service.SvcDescription}).Distinct();
         }
 
         #endregion
 
-        private static bool HasError(string response) { return response.IndexOf("<Error>", StringComparison.InvariantCultureIgnoreCase) != -1; }
+        private static bool HasError(string response) {
+            return response.IndexOf("<Error>", StringComparison.InvariantCultureIgnoreCase) != -1;
+        }
 
-        private string DoRequest(IntlRateV2Request request) { return _request.GetResponse(_apiUrl, string.Format("API=IntlRateV2&XML={0}", request.ToXmlString())); }
+        private string DoRequest(IntlRateV2Request request) {
+            return _request.GetResponse(_apiUrl, string.Format("API=IntlRateV2&XML={0}", request.ToXmlString()));
+        }
 
-        private string DoRequest(RateV4Request request) { return _request.GetResponse(_apiUrl, string.Format("API=RateV4&XML={0}", request.ToXmlString())); }
+        private string DoRequest(RateV4Request request) {
+            return _request.GetResponse(_apiUrl, string.Format("API=RateV4&XML={0}", request.ToXmlString()));
+        }
     }
 }
