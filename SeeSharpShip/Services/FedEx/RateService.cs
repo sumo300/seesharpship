@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using SeeSharpShip.FedExRateService;
 
 namespace SeeSharpShip.Services.FedEx
 {
