@@ -108,7 +108,13 @@
     <None Include="Docs\USPS-Rate-Calculators-v1-5.pdf" />
     <None Include="Docs\USPS-Track-Confirm-v4-1a.pdf" />
     <None Include="license.txt" />
-    <None Include="SeeSharpShip.nuspec" />
+    <None Include="SeeSharpShip.nuspec">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FedExRateService\RateServiceDefinitions.wsdl" />
+    <None Include="Service References\FedExRateService\SeeSharpShip.FedExRateService.RateReply.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\UpsFreightRateService\common.xsd">
       <SubType>Designer</SubType>
     </None>
