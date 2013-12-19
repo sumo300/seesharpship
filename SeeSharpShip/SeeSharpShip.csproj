@@ -104,9 +104,6 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Docs\FedEx-RateServices_WSDL_Guide.pdf" />
-    <None Include="Docs\USPS-Rate-Calculators-v1-5.pdf" />
-    <None Include="Docs\USPS-Track-Confirm-v4-1a.pdf" />
     <None Include="license.txt" />
     <None Include="SeeSharpShip.nuspec">
       <SubType>Designer</SubType>

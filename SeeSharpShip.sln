@@ -1,11 +1,14 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeeSharpShip", "SeeSharpShip\SeeSharpShip.csproj", "{4ABFD9BB-B5EB-404C-9407-0F0D437EAECE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeeSharpShip.Tests", "SeeSharpShip.Tests\SeeSharpShip.Tests.csproj", "{C3587780-0550-41FC-BABC-AB081F3C843F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E1FBD977-D38C-4506-87BC-0478979DA4E2}"
 	ProjectSection(SolutionItems) = preProject
+		Docs\FedEx-RateServices_WSDL_Guide.pdf = Docs\FedEx-RateServices_WSDL_Guide.pdf
+		Docs\USPS-Rate-Calculators-v1-5.pdf = Docs\USPS-Rate-Calculators-v1-5.pdf
+		Docs\USPS-Track-Confirm-v4-1a.pdf = Docs\USPS-Track-Confirm-v4-1a.pdf
 		Docs\WritingTests.txt = Docs\WritingTests.txt
 	EndProjectSection
 EndProject
