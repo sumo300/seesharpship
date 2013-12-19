@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4ABFD9BB-B5EB-404C-9407-0F0D437EAECE}</ProjectGuid>
+    <ProjectGuid>{83B2630B-E353-4ABC-A341-CFD3C9DE129D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SeeSharpShip</RootNamespace>
-    <AssemblyName>SeeSharpShip</AssemblyName>
+    <RootNamespace>SeeSharpShip.ServiceProxy</RootNamespace>
+    <AssemblyName>SeeSharpShip.ServiceProxy</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,8 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,56 +29,25 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Versioning\AssemblyVersionInfo.cs">
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
+    <Compile Include="FedEx\Rates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\FedEx\RateService.cs" />
-    <Compile Include="Services\Usps\IRequest.cs" />
-    <Compile Include="Services\Usps\ITrackService.cs" />
-    <Compile Include="Services\Usps\PostRequest.cs" />
-    <Compile Include="Services\Usps\TrackService.cs" />
-    <Compile Include="Services\Usps\IRateService.cs" />
-    <Compile Include="Services\Usps\RateService.cs" />
-    <Compile Include="Services\Usps\ServiceInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="license.txt" />
-    <None Include="SeeSharpShip.nuspec">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\SeeSharpShip.Core\SeeSharpShip.Core.csproj">
-      <Project>{f0da717c-7a02-4148-9e24-ce2522f0dc35}</Project>
-      <Name>SeeSharpShip.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SeeSharpShip.Model\SeeSharpShip.Model.csproj">
-      <Project>{fc5a0764-decb-483a-86d7-87dfed5a4cac}</Project>
-      <Name>SeeSharpShip.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SeeSharpShip.ServiceProxy\SeeSharpShip.ServiceProxy.csproj">
-      <Project>{83b2630b-e353-4abc-a341-cfd3c9de129d}</Project>
-      <Name>SeeSharpShip.ServiceProxy</Name>
-    </ProjectReference>
+    <Compile Include="Ups\Rates.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
