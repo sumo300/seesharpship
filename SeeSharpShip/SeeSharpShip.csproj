@@ -48,37 +48,8 @@
     <Compile Include="..\Versioning\AssemblyVersionInfo.cs">
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
-    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Models\Usps\Domestic\FirstClassMailTypes.cs" />
-    <Compile Include="Extensions\ModelExtensions.cs" />
-    <Compile Include="Models\Usps\Domestic\Request\DomesticPackage.cs" />
-    <Compile Include="Extensions\GuidExtensions.cs" />
-    <Compile Include="Models\Usps\International\Request\MailType.cs" />
-    <Compile Include="Models\Usps\IRateResponse.cs" />
-    <Compile Include="Models\Usps\IRateRequest.cs" />
-    <Compile Include="Models\Usps\Domestic\Response\Package.cs" />
-    <Compile Include="Models\Usps\Domestic\Response\Postage.cs" />
-    <Compile Include="Models\Usps\International\Response\ExtraService.cs" />
-    <Compile Include="Models\Usps\International\Response\Package.cs" />
-    <Compile Include="Models\Usps\International\Response\PostOffice.cs" />
-    <Compile Include="Models\Usps\International\Response\Service.cs" />
-    <Compile Include="Models\Usps\RequestError.cs" />
-    <Compile Include="Models\Usps\Domestic\Response\SpecialService.cs" />
-    <Compile Include="Models\Usps\International\Request\ExtraServices.cs" />
-    <Compile Include="Models\Usps\International\Request\GlobalExpressGuaranteed.cs" />
-    <Compile Include="Models\Usps\International\Request\IntlRateV2Request.cs" />
-    <Compile Include="Models\Usps\International\Request\InternationalPackage.cs" />
-    <Compile Include="Models\Usps\International\Response\IntlV2Response.cs" />
-    <Compile Include="Models\Usps\TrackDetail.cs" />
-    <Compile Include="Models\Usps\TrackId.cs" />
-    <Compile Include="Models\Usps\TrackInfo.cs" />
-    <Compile Include="Models\Usps\TrackRequest.cs" />
-    <Compile Include="Models\Usps\TrackResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Usps\Domestic\ServiceTypes.cs" />
-    <Compile Include="Models\Usps\Domestic\Request\RateV4Request.cs" />
-    <Compile Include="Models\Usps\Domestic\Request\SpecialService.cs" />
     <Compile Include="Service References\UpsFreightRateService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -98,7 +69,6 @@
     <Compile Include="Utilities\CacheItem.cs" />
     <Compile Include="Services\Usps\IRateService.cs" />
     <Compile Include="Services\Usps\RateService.cs" />
-    <Compile Include="Models\Usps\Domestic\Response\RateV4Response.cs" />
     <Compile Include="Utilities\ResponseCache.cs" />
     <Compile Include="Services\Usps\ServiceInfo.cs" />
     <Compile Include="Utilities\EnumHelper.cs" />
@@ -169,9 +139,7 @@
     <WCFMetadataStorage Include="Service References\UpsFreightRateService\" />
     <WCFMetadataStorage Include="Service References\UpsPackageRateService\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\FedEx\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SeeSharpShip.Model\SeeSharpShip.Model.csproj">
       <Project>{fc5a0764-decb-483a-86d7-87dfed5a4cac}</Project>

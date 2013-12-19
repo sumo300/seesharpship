@@ -19,7 +19,7 @@
 
 using System;
 using NUnit.Framework;
-using SeeSharpShip.Models.Usps;
+using SeeSharpShip.Model.Usps;
 using SeeSharpShip.Services.Usps;
 using SeeSharpShip.Tests.Properties;
 

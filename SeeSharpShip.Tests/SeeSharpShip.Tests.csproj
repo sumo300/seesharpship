@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Versioning\AssemblyVersionInfo.cs">
@@ -71,6 +72,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SeeSharpShip.Model\SeeSharpShip.Model.csproj">
+      <Project>{fc5a0764-decb-483a-86d7-87dfed5a4cac}</Project>
+      <Name>SeeSharpShip.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SeeSharpShip\SeeSharpShip.csproj">
       <Project>{4ABFD9BB-B5EB-404C-9407-0F0D437EAECE}</Project>
       <Name>SeeSharpShip</Name>

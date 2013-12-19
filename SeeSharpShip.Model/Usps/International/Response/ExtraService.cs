@@ -17,17 +17,16 @@
 
 #endregion
 
-using System.Collections.Generic;
-using SeeSharpShip.Model.Usps.Domestic.Request;
-using SeeSharpShip.Model.Usps.Domestic.Response;
-using SeeSharpShip.Model.Usps.International.Request;
-using SeeSharpShip.Model.Usps.International.Response;
+using System.Xml.Serialization;
 
-namespace SeeSharpShip.Services.Usps {
-    public interface IRateService {
-        RateV4Response Get(RateV4Request request);
-        IntlRateV2Response Get(IntlRateV2Request request);
-        IEnumerable<ServiceInfo> DomesticServices(string userId, string password, string zip);
-        IEnumerable<ServiceInfo> InternationalServices(string userId, string password, string zip);
+namespace SeeSharpShip.Model.Usps.International.Response {
+    public class ExtraService {
+        [XmlElement("ServiceID")]
+        public string ServiceId { get; set; }
+
+        public string ServiceName { get; set; }
+        public string Available { get; set; }
+        public decimal Price { get; set; }
+        public string DeclaredValueRequired { get; set; }
     }
 }

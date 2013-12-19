@@ -17,10 +17,28 @@
 
 #endregion
 
-using SeeSharpShip.Model.Usps;
+using System;
+using System.Collections.Generic;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 
-namespace SeeSharpShip.Services.Usps {
-    public interface ITrackService {
-        TrackResponse Get(TrackRequest request);
+namespace SeeSharpShip.Model.Usps {
+    [Serializable]
+    [XmlType(AnonymousType = true)]
+    public class TrackInfo {
+        [XmlElement(Form = XmlSchemaForm.Unqualified)]
+        public string TrackSummary { get; set; }
+
+        [XmlElement(IsNullable = true)]
+        public string GuaranteedDeliveryDate { get; set; }
+
+        [XmlElement(ElementName = "TrackDetail", Form = XmlSchemaForm.Unqualified, IsNullable = true)]
+        public List<TrackDetail> TrackDetail { get; set; }
+
+        [XmlAttribute(AttributeName = "ID")]
+        public string Id { get; set; }
+
+        [XmlElement(IsNullable = true)]
+        public RequestError Error { get; set; }
     }
 }

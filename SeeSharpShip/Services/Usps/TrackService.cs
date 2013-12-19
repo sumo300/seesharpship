@@ -20,7 +20,8 @@
 using System;
 using System.Xml.Linq;
 using SeeSharpShip.Extensions;
-using SeeSharpShip.Models.Usps;
+using SeeSharpShip.Model.Extensions;
+using SeeSharpShip.Model.Usps;
 
 namespace SeeSharpShip.Services.Usps {
     public class TrackService : ITrackService {

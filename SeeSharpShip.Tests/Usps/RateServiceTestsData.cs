@@ -19,9 +19,9 @@
 
 using System;
 using System.Collections.Generic;
-using SeeSharpShip.Models.Usps.Domestic;
-using SeeSharpShip.Models.Usps.Domestic.Request;
-using SeeSharpShip.Models.Usps.International.Request;
+using SeeSharpShip.Model.Usps.Domestic;
+using SeeSharpShip.Model.Usps.Domestic.Request;
+using SeeSharpShip.Model.Usps.International.Request;
 using SeeSharpShip.Tests.Properties;
 
 namespace SeeSharpShip.Tests.Usps {

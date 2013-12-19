@@ -1,4 +1,4 @@
-#region SeeSharpShip is Copyright (C) 2011-2011 Michael J. Sumerano.
+#region SeeSharpShip is Copyright (C) 2013-2013 Michael J. Sumerano.
 
 // This file is part of SeeSharpShip.
 // 
@@ -17,17 +17,13 @@
 
 #endregion
 
-using System.Collections.Generic;
-using SeeSharpShip.Model.Usps.Domestic.Request;
-using SeeSharpShip.Model.Usps.Domestic.Response;
-using SeeSharpShip.Model.Usps.International.Request;
-using SeeSharpShip.Model.Usps.International.Response;
+using System;
+using System.Xml.Serialization;
 
-namespace SeeSharpShip.Services.Usps {
-    public interface IRateService {
-        RateV4Response Get(RateV4Request request);
-        IntlRateV2Response Get(IntlRateV2Request request);
-        IEnumerable<ServiceInfo> DomesticServices(string userId, string password, string zip);
-        IEnumerable<ServiceInfo> InternationalServices(string userId, string password, string zip);
+namespace SeeSharpShip.Model.Usps {
+    [Serializable]
+    public class TrackDetail {
+        [XmlText]
+        public string Value { get; set; }
     }
 }

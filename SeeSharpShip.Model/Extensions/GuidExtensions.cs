@@ -17,17 +17,14 @@
 
 #endregion
 
-using System.Collections.Generic;
-using SeeSharpShip.Model.Usps.Domestic.Request;
-using SeeSharpShip.Model.Usps.Domestic.Response;
-using SeeSharpShip.Model.Usps.International.Request;
-using SeeSharpShip.Model.Usps.International.Response;
+using System;
+using System.Linq;
 
-namespace SeeSharpShip.Services.Usps {
-    public interface IRateService {
-        RateV4Response Get(RateV4Request request);
-        IntlRateV2Response Get(IntlRateV2Request request);
-        IEnumerable<ServiceInfo> DomesticServices(string userId, string password, string zip);
-        IEnumerable<ServiceInfo> InternationalServices(string userId, string password, string zip);
+namespace SeeSharpShip.Model.Extensions {
+    public static class GuidExtensions {
+        public static string ToShortId(this Guid value) {
+            long i = value.ToByteArray().Aggregate<byte, long>(1, (current, b) => current*((int) b + 1));
+            return string.Format("{0:x}", i - DateTime.Now.Ticks);
+        }
     }
 }

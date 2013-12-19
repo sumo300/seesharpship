@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SeeSharpShip.Model</RootNamespace>
     <AssemblyName>SeeSharpShip.Model</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,7 +43,37 @@
     <Compile Include="..\Versioning\AssemblyVersionInfo.cs">
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\GuidExtensions.cs" />
+    <Compile Include="Extensions\ModelExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Usps\Domestic\FirstClassMailTypes.cs" />
+    <Compile Include="Usps\Domestic\Request\DomesticPackage.cs" />
+    <Compile Include="Usps\Domestic\Request\RateV4Request.cs" />
+    <Compile Include="Usps\Domestic\Request\SpecialService.cs" />
+    <Compile Include="Usps\Domestic\Response\Package.cs" />
+    <Compile Include="Usps\Domestic\Response\Postage.cs" />
+    <Compile Include="Usps\Domestic\Response\RateV4Response.cs" />
+    <Compile Include="Usps\Domestic\Response\SpecialService.cs" />
+    <Compile Include="Usps\Domestic\ServiceTypes.cs" />
+    <Compile Include="Usps\International\Request\ExtraServices.cs" />
+    <Compile Include="Usps\International\Request\GlobalExpressGuaranteed.cs" />
+    <Compile Include="Usps\International\Request\InternationalPackage.cs" />
+    <Compile Include="Usps\International\Request\IntlRateV2Request.cs" />
+    <Compile Include="Usps\International\Request\MailType.cs" />
+    <Compile Include="Usps\International\Response\ExtraService.cs" />
+    <Compile Include="Usps\International\Response\IntlV2Response.cs" />
+    <Compile Include="Usps\International\Response\Package.cs" />
+    <Compile Include="Usps\International\Response\PostOffice.cs" />
+    <Compile Include="Usps\International\Response\Service.cs" />
+    <Compile Include="Usps\IRateRequest.cs" />
+    <Compile Include="Usps\IRateResponse.cs" />
+    <Compile Include="Usps\RequestError.cs" />
+    <Compile Include="Usps\TrackDetail.cs" />
+    <Compile Include="Usps\TrackId.cs" />
+    <Compile Include="Usps\TrackInfo.cs" />
+    <Compile Include="Usps\TrackRequest.cs" />
+    <Compile Include="Usps\TrackResponse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

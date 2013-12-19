@@ -17,17 +17,17 @@
 
 #endregion
 
-using System.Collections.Generic;
-using SeeSharpShip.Model.Usps.Domestic.Request;
-using SeeSharpShip.Model.Usps.Domestic.Response;
-using SeeSharpShip.Model.Usps.International.Request;
-using SeeSharpShip.Model.Usps.International.Response;
+using System.ComponentModel;
 
-namespace SeeSharpShip.Services.Usps {
-    public interface IRateService {
-        RateV4Response Get(RateV4Request request);
-        IntlRateV2Response Get(IntlRateV2Request request);
-        IEnumerable<ServiceInfo> DomesticServices(string userId, string password, string zip);
-        IEnumerable<ServiceInfo> InternationalServices(string userId, string password, string zip);
+namespace SeeSharpShip.Model.Usps.International.Request {
+    public enum MailType {
+        All,
+        Package,
+
+        [Description("Postcards or aerogrammes")]
+        PostcardsOrAerogrammes,
+        Envelope,
+        LargeEnvelope,
+        FlatRate
     }
 }

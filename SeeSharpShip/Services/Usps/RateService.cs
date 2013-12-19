@@ -21,12 +21,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using SeeSharpShip.Extensions;
-using SeeSharpShip.Models.Usps;
-using SeeSharpShip.Models.Usps.Domestic;
-using SeeSharpShip.Models.Usps.Domestic.Request;
-using SeeSharpShip.Models.Usps.Domestic.Response;
-using SeeSharpShip.Models.Usps.International.Request;
-using SeeSharpShip.Models.Usps.International.Response;
+using SeeSharpShip.Model.Extensions;
+using SeeSharpShip.Model.Usps;
+using SeeSharpShip.Model.Usps.Domestic;
+using SeeSharpShip.Model.Usps.Domestic.Request;
+using SeeSharpShip.Model.Usps.Domestic.Response;
+using SeeSharpShip.Model.Usps.International.Request;
+using SeeSharpShip.Model.Usps.International.Response;
 
 namespace SeeSharpShip.Services.Usps {
     public class RateService : IRateService {

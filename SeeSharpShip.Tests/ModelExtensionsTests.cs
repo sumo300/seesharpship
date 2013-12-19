@@ -20,7 +20,8 @@
 using System;
 using NUnit.Framework;
 using SeeSharpShip.Extensions;
-using SeeSharpShip.Models.Usps.Domestic;
+using SeeSharpShip.Model.Extensions;
+using SeeSharpShip.Model.Usps.Domestic;
 using SeeSharpShip.Tests.Usps.DomesticBuilders;
 
 namespace SeeSharpShip.Tests {
