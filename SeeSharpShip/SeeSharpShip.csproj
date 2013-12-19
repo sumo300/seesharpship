@@ -48,7 +48,6 @@
     <Compile Include="..\Versioning\AssemblyVersionInfo.cs">
       <Link>Properties\AssemblyVersionInfo.cs</Link>
     </Compile>
-    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\UpsFreightRateService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -66,12 +65,9 @@
     <Compile Include="Services\Usps\ITrackService.cs" />
     <Compile Include="Services\Usps\PostRequest.cs" />
     <Compile Include="Services\Usps\TrackService.cs" />
-    <Compile Include="Utilities\CacheItem.cs" />
     <Compile Include="Services\Usps\IRateService.cs" />
     <Compile Include="Services\Usps\RateService.cs" />
-    <Compile Include="Utilities\ResponseCache.cs" />
     <Compile Include="Services\Usps\ServiceInfo.cs" />
-    <Compile Include="Utilities\EnumHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -141,6 +137,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\SeeSharpShip.Core\SeeSharpShip.Core.csproj">
+      <Project>{f0da717c-7a02-4148-9e24-ce2522f0dc35}</Project>
+      <Name>SeeSharpShip.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SeeSharpShip.Model\SeeSharpShip.Model.csproj">
       <Project>{fc5a0764-decb-483a-86d7-87dfed5a4cac}</Project>
       <Name>SeeSharpShip.Model</Name>

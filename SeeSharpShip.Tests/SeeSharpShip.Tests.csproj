@@ -72,6 +72,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SeeSharpShip.Core\SeeSharpShip.Core.csproj">
+      <Project>{f0da717c-7a02-4148-9e24-ce2522f0dc35}</Project>
+      <Name>SeeSharpShip.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SeeSharpShip.Model\SeeSharpShip.Model.csproj">
       <Project>{fc5a0764-decb-483a-86d7-87dfed5a4cac}</Project>
       <Name>SeeSharpShip.Model</Name>

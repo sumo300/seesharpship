@@ -19,7 +19,7 @@
 
 using System;
 using NUnit.Framework;
-using SeeSharpShip.Utilities;
+using SeeSharpShip.Core;
 
 namespace SeeSharpShip.Tests {
     [TestFixture]

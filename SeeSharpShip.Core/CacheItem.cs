@@ -19,7 +19,7 @@
 
 using System;
 
-namespace SeeSharpShip.Utilities {
+namespace SeeSharpShip.Core {
     public class CacheItem {
         public string Value { get; set; }
         public DateTime InsertedOn { get; set; }

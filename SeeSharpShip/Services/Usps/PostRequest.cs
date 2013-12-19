@@ -23,8 +23,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Xml.Linq;
-using SeeSharpShip.Extensions;
-using SeeSharpShip.Utilities;
+using SeeSharpShip.Core;
+using SeeSharpShip.Core.Extensions;
 
 namespace SeeSharpShip.Services.Usps {
     public class PostRequest : IRequest

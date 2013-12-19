@@ -19,7 +19,6 @@
 
 using System;
 using NUnit.Framework;
-using SeeSharpShip.Extensions;
 using SeeSharpShip.Model.Extensions;
 using SeeSharpShip.Model.Usps.Domestic;
 using SeeSharpShip.Tests.Usps.DomesticBuilders;

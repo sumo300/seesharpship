@@ -20,7 +20,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SeeSharpShip.Utilities {
+namespace SeeSharpShip.Core {
     /// <summary>
     ///   A simple caching mechanism that uses an internal Dictionary.
     /// </summary>

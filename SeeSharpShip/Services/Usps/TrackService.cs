@@ -19,7 +19,6 @@
 
 using System;
 using System.Xml.Linq;
-using SeeSharpShip.Extensions;
 using SeeSharpShip.Model.Extensions;
 using SeeSharpShip.Model.Usps;
 

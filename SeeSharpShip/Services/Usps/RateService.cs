@@ -20,7 +20,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SeeSharpShip.Extensions;
 using SeeSharpShip.Model.Extensions;
 using SeeSharpShip.Model.Usps;
 using SeeSharpShip.Model.Usps.Domestic;

@@ -1,4 +1,4 @@
-﻿#region SeeSharpShip is Copyright (C) 2011-2011 Michael J. Sumerano.
+#region SeeSharpShip is Copyright (C) 2011-2011 Michael J. Sumerano.
 
 // This file is part of SeeSharpShip.
 // 
@@ -21,7 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SeeSharpShip.Utilities {
+namespace SeeSharpShip.Core {
     public class EnumHelper {
         public static IEnumerable<T> ToEnumerable<T>() where T : struct {
             Type enumType = typeof (T);
