@@ -24,6 +24,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Transforms", "Transforms", 
 		NuGet\Transforms\web.config.transform = NuGet\Transforms\web.config.transform
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeeSharpShip.Model", "SeeSharpShip.Model\SeeSharpShip.Model.csproj", "{FC5A0764-DECB-483A-86D7-87DFED5A4CAC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Versioning", "Versioning", "{A158E824-CAB0-4314-A8B1-D4366C80B9E2}"
+	ProjectSection(SolutionItems) = preProject
+		Versioning\AssemblyVersionInfo.cs = Versioning\AssemblyVersionInfo.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +45,10 @@ Global
 		{C3587780-0550-41FC-BABC-AB081F3C843F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3587780-0550-41FC-BABC-AB081F3C843F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3587780-0550-41FC-BABC-AB081F3C843F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC5A0764-DECB-483A-86D7-87DFED5A4CAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC5A0764-DECB-483A-86D7-87DFED5A4CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC5A0764-DECB-483A-86D7-87DFED5A4CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC5A0764-DECB-483A-86D7-87DFED5A4CAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

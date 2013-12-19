@@ -18,5 +18,5 @@
 #endregion
 
 namespace SeeSharpShip.Tests.FedEx {
-    public class RateRequest : ServiceProxies..RateRequest {}
+    public class RateRequest : ServiceProxies.RateRequest {}
 }

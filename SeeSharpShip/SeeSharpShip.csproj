@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Versioning\AssemblyVersionInfo.cs">
+      <Link>Properties\AssemblyVersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Models\Usps\Domestic\FirstClassMailTypes.cs" />
@@ -168,6 +171,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\FedEx\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SeeSharpShip.Model\SeeSharpShip.Model.csproj">
+      <Project>{fc5a0764-decb-483a-86d7-87dfed5a4cac}</Project>
+      <Name>SeeSharpShip.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

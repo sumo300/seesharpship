@@ -39,6 +39,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Versioning\AssemblyVersionInfo.cs">
+      <Link>Properties\AssemblyVersionInfo.cs</Link>
+    </Compile>
     <Compile Include="FedEx\RateRequest.cs" />
     <Compile Include="FedEx\RateServiceTests.cs" />
     <Compile Include="ModelExtensionsTests.cs" />
