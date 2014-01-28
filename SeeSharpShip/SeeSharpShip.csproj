@@ -62,8 +62,11 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="SeeSharpShip.nuspec.Release">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="license.txt" />
-    <None Include="SeeSharpShip.nuspec">
+    <None Include="SeeSharpShip.nuspec.Debug">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

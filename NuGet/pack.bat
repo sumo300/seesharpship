@@ -1,9 +1,15 @@
 @echo off
 
+setlocal
+
 pushd ..
 pushd SeeSharpShip
 
-nuget pack SeeSharpShip.csproj -Prop Configuration=Release %1
+set config=Release
+
+copy SeeSharpShip.nuspec.%config% SeeSharpShip.nuspec
+nuget pack SeeSharpShip.csproj -Build -IncludeReferencedProjects -Properties Configuration=%config%;OutputPath=.\bin\%config%
+del SeeSharpShip.nuspec
 
 popd
 popd

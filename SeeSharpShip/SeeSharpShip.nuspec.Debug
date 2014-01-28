@@ -24,7 +24,7 @@
     </metadata>
     <files>
         <file src="..\NuGet\Transforms\*.config.transform" target="content\" />
-        <file src=".\bin\Release\SeeSharpShip.dll" target="lib\net40\SeeSharpShip.dll" />
-        <file src=".\bin\Release\SeeSharpShip.pdb" target="lib\net40\SeeSharpShip.pdb" />
+        <file src=".\bin\Debug\SeeSharpShip*.dll" target="lib\net40\" />
+        <file src=".\bin\Debug\SeeSharpShip*.pdb" target="lib\net40\" />
     </files>
 </package>

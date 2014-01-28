@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package>
+    <metadata>
+        <id>$id$</id>
+        <version>$version$</version>
+        <title>$title$</title>
+        <authors>Michael J. Sumerano</authors>
+        <owners>Michael J. Sumerano</owners>
+        <licenseUrl>http://www.gnu.org/licenses/gpl-3.0.html</licenseUrl>
+        <projectUrl>http://www.seesharpship.com/</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>$description$</description>
+        <releaseNotes></releaseNotes>
+        <copyright>2011-2013 Michael J. Sumerano</copyright>
+        <tags>seesharpship usps ups fedex dhl</tags>
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.0" />
+            <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.0" />
+            <frameworkAssembly assemblyName="System.ServiceModel" targetFramework=".NETFramework4.0" />
+            <frameworkAssembly assemblyName="System.Web" targetFramework=".NETFramework4.0" />
+            <frameworkAssembly assemblyName="System.Xml" targetFramework=".NETFramework4.0" />
+            <frameworkAssembly assemblyName="System.Xml.Linq" targetFramework=".NETFramework4.0" />
+        </frameworkAssemblies>
+    </metadata>
+    <files>
+        <file src="..\NuGet\Transforms\*.config.transform" target="content\" />
+    </files>
+</package>

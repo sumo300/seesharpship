@@ -5,3 +5,5 @@ obj/
 *.user
 FedEx-Test-Credentials.txt
 SeeSharpShip.Tests/sumerano.config
+SeeSharpShip.nuspec
+*.nupkg
