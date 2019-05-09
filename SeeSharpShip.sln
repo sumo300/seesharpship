@@ -1,5 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeeSharpShip", "SeeSharpShip\SeeSharpShip.csproj", "{4ABFD9BB-B5EB-404C-9407-0F0D437EAECE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeeSharpShip.Tests", "SeeSharpShip.Tests\SeeSharpShip.Tests.csproj", "{C3587780-0550-41FC-BABC-AB081F3C843F}"
@@ -9,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E1FBD977-D
 		Docs\FedEx-RateServices_WSDL_Guide.pdf = Docs\FedEx-RateServices_WSDL_Guide.pdf
 		Docs\USPS-Rate-Calculators-v1-5.pdf = Docs\USPS-Rate-Calculators-v1-5.pdf
 		Docs\USPS-Track-Confirm-v4-1a.pdf = Docs\USPS-Track-Confirm-v4-1a.pdf
-		Docs\WritingTests.txt = Docs\WritingTests.txt
+		Docs\WritingTests.md = Docs\WritingTests.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{956B54A0-7BB5-440F-AFC5-8E2893284038}"
@@ -67,5 +69,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5A3B87E3-4E3A-4B12-A02D-DA49E59F73A4} = {956B54A0-7BB5-440F-AFC5-8E2893284038}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98725E53-233D-49BD-842D-7CAF39967536}
 	EndGlobalSection
 EndGlobal

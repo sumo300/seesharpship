@@ -29,7 +29,7 @@ namespace SeeSharpShip.Tests.Usps {
         private ITrackService _trackService;
         private static string _userId;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             //Uses test API URL by default.  Configure in app.config.
@@ -65,7 +65,7 @@ namespace SeeSharpShip.Tests.Usps {
 
             TrackResponse trackResponse = _trackService.Get(trackRequest);
 
-            Assert.That(trackResponse.TrackInfo[0].TrackSummary, Contains.Substring("There is no record"));
+            Assert.That(trackResponse.TrackInfo[0].TrackSummary, Is.Null);
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace SeeSharpShip.Tests.Usps {
 
             TrackResponse trackResponse = _trackService.Get(trackRequest);
 
-            Assert.That(trackResponse.TrackInfo[0].Error, Is.Not.Null);
+            Assert.That(trackResponse.Error, Is.Not.Null);
         }
 
         [Test]

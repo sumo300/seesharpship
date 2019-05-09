@@ -39,7 +39,7 @@ namespace SeeSharpShip.Tests.Usps {
         private static string _password;
         private static string _sourceZipCode;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp() {
             //Default hits production API URL
             //_rateService = new RateService();
