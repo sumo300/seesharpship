@@ -38,7 +38,7 @@ steps:
     scannerMode: 'MSBuild'
     projectKey: 'sumo300_seesharpship'
     projectName: 'seesharpship'
-    projectVersion: $(AssemblyInfo.AVI_AssemblyVersion)
+    projectVersion: $(AVI_AssemblyInfo.AssemblyVersion)
 
 - task: VSBuild@1
   inputs:
