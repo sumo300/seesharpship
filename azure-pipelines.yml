@@ -15,11 +15,20 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'SonarCloud'
+    organization: 'sumo300'
+    scannerMode: 'MSBuild'
+    projectKey: 'sumo300_seesharpship'
+    projectName: 'seesharpship'
 
 - task: VSBuild@1
   inputs:
